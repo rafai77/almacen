@@ -25,4 +25,19 @@ export class DatosService {
     }
     return this.http.post<Datos>(`${this.Dominio}/datos`,valores,{headers:headers});
   }
+
+  productos(valores): Observable<any>
+  {
+    var headers={
+      'vefificador':this.servicelog.tkget()
+    }
+    return this.http.post(`${this.Dominio}/productos`,valores,{headers:headers});
+  }
+  totales(valores): Observable<any>
+  {
+    var headers={
+      'vefificador':this.servicelog.tkget()
+    }
+    return this.http.post(`${this.Dominio}/valores`,valores,{headers:headers});
+  }
 }

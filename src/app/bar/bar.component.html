@@ -1,52 +1,48 @@
 
-  <nav class="navbar navbar-expand-lg navbar-light asub" style="background-color: #4b0082;">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+
+  <nav class="navbar navbar-expand-lg navbar-dark  " style="background-color: #4b0082;">
+    <button class="navbar-toggler" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse a" id="navbarTogglerDemo01">
-      <a class="navbar-brand a" href="#"> <svg svg width="2em" height="2em" id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.25 28.06"><defs><style>.cls-1{fill:#fff;}</style></defs><title>Sin título-2</title><path class="cls-1" d="M302.89,408.62l-2.62,6.47a13.81,13.81,0,0,1,2.4,19.86A13.82,13.82,0,0,0,302.89,408.62Z" transform="translate(-283.16 -406.89)"/><path class="cls-1" d="M290.35,409.54a13.82,13.82,0,0,0,2.55,25.32A13.81,13.81,0,0,1,294.09,416l1.77,3.07,4.26-10.6-11.31-1.61Z" transform="translate(-283.16 -406.89)"/></svg> </a>
+    <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
       <ul class="a navbar-nav mr-auto mt-2 mt-lg-0"*ngIf="checklog()" >
-        <li class="nav-item active a" >
-          <a class="nav-link a" style="color:#fff" href="#">Inventario  <span class="sr-only">(current)</span><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-table" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"/>
-          </svg></a>
-        </li>
-        <div class="row">
-          <div class="col">
-            <div ngbDropdown class="d-inline-block">
-              <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Cuartos De Maquinas</button>
-              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button ngbDropdownItem>Cuarto de maquinas 1</button>
-                <button ngbDropdownItem>Cuarto de maquinas 2</button>
-                <button ngbDropdownItem>Cuarto de maquinas 3</button>
-                <button ngbDropdownItem>Cuarto de maquinas 4</button>
-                <button ngbDropdownItem>Cuarto de maquinas 5</button>
-              </div>
+      <a class="navbar-brand a" href="#"> <svg svg width="2em" height="2em" id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.25 28.06"><defs><style>.cls-1{fill:#fff;}</style></defs><title>Sin título-2</title><path class="cls-1" d="M302.89,408.62l-2.62,6.47a13.81,13.81,0,0,1,2.4,19.86A13.82,13.82,0,0,0,302.89,408.62Z" transform="translate(-283.16 -406.89)"/><path class="cls-1" d="M290.35,409.54a13.82,13.82,0,0,0,2.55,25.32A13.81,13.81,0,0,1,294.09,416l1.77,3.07,4.26-10.6-11.31-1.61Z" transform="translate(-283.16 -406.89)"/></svg> </a>
+      <a class="nav-link a" style="color:#fff;padding-top:15px;" href="#">Almacen  <span class="sr-only">(current)</span><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-table" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"/>
+      </svg></a>
+      <div class="row" style="padding:10px">
+        <div class="col">
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Cuartos De Maquinas</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem>Cuarto de maquinas 1</button>
+              <button ngbDropdownItem>Cuarto de maquinas 2</button>
+              <button ngbDropdownItem>Cuarto de maquinas 3</button>
+              <button ngbDropdownItem>Cuarto de maquinas 4</button>
+              <button ngbDropdownItem>Cuarto de maquinas 5</button>
             </div>
           </div>
         </div>
+      </div>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" *ngIf="checklog()">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link"  style="color:#FFFF" href=""> <span  class="sr-only">(current)</span><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+            <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+            <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+          </svg> {{nombre()}}
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" (click)="Logout() " style="color:#FFFF" href="">Cerrar session  <span click="Logout()" class="sr-only">(current)</span><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-door-open" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M1 15.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM11.5 2H11V1h.5A1.5 1.5 0 0 1 13 2.5V15h-1V2.5a.5.5 0 0 0-.5-.5z"/>
+            <path fill-rule="evenodd" d="M10.828.122A.5.5 0 0 1 11 .5V15h-1V1.077l-6 .857V15H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117z"/>
+            <path d="M8 9c0 .552.224 1 .5 1s.5-.448.5-1-.224-1-.5-1-.5.448-.5 1z"/>
+          </svg></a>
+        </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0" *ngIf="checklog()">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
-            <a class="nav-link"  style="color:#FFFF" href=""> <span  class="sr-only">(current)</span><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
-              <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-              <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
-            </svg> {{nombre()}}
-            </a>
-          </li>
-
-
-          <li class="nav-item active">
-            <a class="nav-link" (click)="Logout() " style="color:#FFFF" href="">Cerrar session  <span click="Logout()" class="sr-only">(current)</span><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-door-open" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M1 15.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM11.5 2H11V1h.5A1.5 1.5 0 0 1 13 2.5V15h-1V2.5a.5.5 0 0 0-.5-.5z"/>
-              <path fill-rule="evenodd" d="M10.828.122A.5.5 0 0 1 11 .5V15h-1V1.077l-6 .857V15H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117z"/>
-              <path d="M8 9c0 .552.224 1 .5 1s.5-.448.5-1-.224-1-.5-1-.5.448-.5 1z"/>
-            </svg></a>
-          </li>
-
-        </ul>
-      </form>
+    </form>
     </div>
   </nav>

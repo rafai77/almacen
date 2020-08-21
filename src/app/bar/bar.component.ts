@@ -39,5 +39,6 @@ export class BarComponent implements OnInit {
   {
     return this.servicelog.getnombre()
   }
+  isNavbarCollapsed=true;
 
 }

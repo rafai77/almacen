@@ -25,14 +25,20 @@ export class HomeComponent implements OnInit {
   totales:number[]
   colores:string[]
   color="";
+  datachar=[]
+  Data:Datos[]
+  l
 
 
   constructor(private datos:DatosService,private router:Router) { this.dataSource = new MatTableDataSource()  }
 
   ngOnInit(): void
   {
+    this.labels();
     this.obtener();
+
   }
+
 
   getRandomColor() {
     var letters = '0123456789ABCDEF';
@@ -45,89 +51,82 @@ export class HomeComponent implements OnInit {
   }
 
 
+  private labels()
+  {
+    var body={
+      tabla:'inventario',
+      tipo:'solido'
+    }
+    this.datos.datos(body).subscribe( (res:any ) =>
+    {
+      this.productos=res.map(item=> item.producto)
+      this.totales=res.map(item=> item.total)
+    })
+
+
+  }
+
+  private grafica()
+  {
+    var aux1=[]
+    aux1=this.productos.map(function(item){
+      return 0;
+    })
+
+    for (var i in this.productos)
+    {
+      this.getRandomColor()
+      aux1[i]=this.color
+    }
+
+    this.chart =new Chart('canvas',
+      {
+        type:'pie',
+        data:{
+          //datchart
+          labels:this.productos,
+          datasets:[
+            {label:"ds",
+            data:this.totales,
+            borderColor:aux1,
+            backgroundColor:aux1
+            }
+          ]
+
+          //datasets:this.totales
+
+        },
+        options:
+        {
+          title:{
+            display:true,
+            text:"Almacen General",
+            fontSize:30,
+
+
+          },
+        }
+
+      });
+
+  }
 
   obtener()
   {
     var body={
       tabla:'inventario',
-      tipo:null
+      tipo:'solido'
     }
     this.datos.datos(body).subscribe( (res:Datos [] ) =>
     {
+      this.Data=res
       console.log(res)
       this.dataSource.data=res
-    });
-    this.datos.productos(body).subscribe((res:string[]) => {
-      console.log(res)
-      var aux1=[];
-      var aux2=[];
-      var aux3=[];
-      for (var i in res)
-      {
-        this.getRandomColor()
-        aux1.push(res[i]['producto'])
-        aux2.push(res[i]['total'])
-        aux3.push(this.color)
-      }
-      this.productos=aux1;
-      this.totales=aux2;
-      this.colores=aux3;
       console.log(this.productos)
       console.log(this.totales)
-      console.log(this.colores)
-
-
-      this.chart =new Chart('canvas',
-      {
-        type:'bar',
-        data:{
-          labels:this.productos,
-          datasets:[{
-            label:'Productos',
-            data:this.totales,
-            backgroundColor:this.colores
-          }],
-          options:
-          {
-            title:{
-              display:true,
-              text:"Productos del almacen",
-              fontSize:30,
-
-
-            },
-            legend:{
-              position:'bottom',
-              labels:
-              {
-                padding:20,
-                fontFamily:'system-ui',
-                fontColor:'black'
-              }
-
-            },
-            tooltips:
-            {
-              backgroundColor:'#05b4f6',
-              mode:'x'
-            },
-            elements:
-            {
-              line:{
-                borderWidth:4,
-                fill:false
-              },
-              point:{
-                radius:6,
-                borderWidth:4,
-                backgroundColor:'white',
-                hoverRadius:8
-              }
-            }
-          }
-        },
-      });
+      this.grafica();
     })
+
   }
 
 }

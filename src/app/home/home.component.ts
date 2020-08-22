@@ -3,7 +3,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table'
 import {MatPaginator} from '@angular/material/paginator';
 import { DatosService } from '../services/datos.service';
-import { Routes, RouterModule, Router } from '@angular/router';
+import { Routes, RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { Datos } from "../model/Datos";
 import {Chart} from 'chart.js'
 
@@ -27,10 +27,20 @@ export class HomeComponent implements OnInit {
   color="";
   datachar=[]
   Data:Datos[]
-  l
+  cm:string
 
 
-  constructor(private datos:DatosService,private router:Router) { this.dataSource = new MatTableDataSource()  }
+  constructor(private datos:DatosService,private router:Router, private ar:ActivatedRoute)
+  {
+    console.log("home")
+    if(this.ar.snapshot.paramMap.get('cm')!="")
+    this.cm=this.ar.snapshot.paramMap.get('cm');
+    else
+    this.cm="inventario"
+
+    console.log(this.ar.snapshot.paramMap.get('cm'));
+    this.dataSource = new MatTableDataSource()
+  }
 
   ngOnInit(): void
   {
@@ -54,7 +64,7 @@ export class HomeComponent implements OnInit {
   private labels()
   {
     var body={
-      tabla:'inventario',
+      tabla:this.cm,
       tipo:'solido'
     }
     this.datos.datos(body).subscribe( (res:any ) =>
@@ -114,7 +124,7 @@ export class HomeComponent implements OnInit {
   obtener()
   {
     var body={
-      tabla:'inventario',
+      tabla:this.cm,
       tipo:'solido'
     }
     this.datos.datos(body).subscribe( (res:Datos [] ) =>

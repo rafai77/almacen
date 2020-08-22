@@ -21,7 +21,10 @@ export class BarComponent implements OnInit {
   {
     this.checklog();
   }
-
+  changeAction(Nombre)
+  {
+   this.rotuer.navigateByUrl('/Home/'+Nombre);
+  }
 
   ngOnInit(): void {
     this.checklog()

@@ -10,7 +10,7 @@ import { HomeadminComponent } from './homeadmin/homeadmin.component';
 const routes: Routes = [
             {path:'',redirectTo:'Login',pathMatch:'full',},
             {path:'Login',component:LogComponent,canActivate:[LogGuard]},
-            {path:'Home',component:HomeComponent,},//componente para el home normal
+            {path:'Home/:cm',component:HomeComponent,},//componente para el home normal
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

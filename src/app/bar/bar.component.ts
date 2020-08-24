@@ -12,34 +12,38 @@ import { LogService } from '../services/log.service';
 })
 export class BarComponent implements OnInit {
 
-  private log:boolean=false;
+  log:boolean=false;
 
   constructor(private servicelog:LogService,private rotuer:Router)
   {
-    this.log=this.servicelog.checklog()
+
   }
 
   ngOnChanges()
   {
     //this.changeAction();
-    this.checklog();
+
   }
 
   changeAction(n)
   {
-    console.log(n)
    this.rotuer.navigate(['/Home/'+n]);
   }
 
   ngOnInit(): void {
-    this.checklog()
+    this.servicelog.checklog().subscribe( (res)=>
+    {
+      console.log(res,"fdsgasdfga");
+      this.log=res;
+    }
+    );
+    console.log(this.log,"el buneo")
+
   }
-  checklog()
-  {
-    return this.log;
-  }
+
   Logout()
   {
+    this.log=false;
     this.servicelog.logout();
     this.rotuer.navigateByUrl('/Login');
   }

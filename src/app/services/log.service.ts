@@ -5,6 +5,7 @@ import { User } from "../model/User";
 import { Jwt } from "../model/jwt";
 import { tap } from 'rxjs/operators';
 import { Routes, RouterModule, Router } from '@angular/router';
+import { of } from 'rxjs'
 
 
 @Injectable({
@@ -16,6 +17,7 @@ export class LogService {
   private user:string;//
   private info:Jwt;//informacion de la resupesta
   private log:boolean=false;
+  private iduser:string;
 
 
   constructor(private http: HttpClient,private router:Router)
@@ -23,6 +25,7 @@ export class LogService {
     //leer el token si es la primera vez que se entra y cambiar esta de log en caso de ser necesarios
     this.token=localStorage.getItem('tk');
     this.user=localStorage.getItem('nombre');
+    this.iduser=localStorage.getItem('iduser');
     if(this.token)
     this.log=true;
     else
@@ -33,11 +36,23 @@ export class LogService {
 
   }
 
-
-  checklog():boolean
+  log2()
+  {
+   return  this.log ;
+  }
+  checklog():Observable<boolean>
   {
     console.log(this.log);
-    return this.log;
+    this.token=localStorage.getItem('tk');
+    if(this.token)
+    this.log=true;
+    else
+    {
+      this.log=false
+      this.token="";
+    }
+    console.log("loggggggg",this.log)
+    return of(this.log);
   }
 
 
@@ -47,8 +62,17 @@ export class LogService {
     this.log=false;
     localStorage.removeItem('tk');
   }
+  private guardariduser(n)
+  {
+    console.log(n)
+    localStorage.setItem('iduser',n);
+    this.iduser=n;
+  }
 
-
+  setid()
+  {
+    return this.iduser;
+  }
   login(user): Observable<Jwt>
   {
     return this.http.post<Jwt>(`${this.Dominio}/log`,
@@ -60,8 +84,8 @@ export class LogService {
           this.log=true;
           //guardar el token
           this.tkset(res.token);
-          this.guardarN(res.user.nombre)
-
+          this.guardarN(res.user.nombre);
+          this.guardariduser(res.user.id_user);
         }
       }
     ))

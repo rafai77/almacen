@@ -42,12 +42,20 @@ export class HomeComponent implements OnInit {
     {
       this.cm=params.get('cm');
       this.labels();
+      this.datosdrop()
       this.obtener();
     });
 
 
   }
 
+  datosdrop()
+  {
+    this.datos.cms().subscribe(res=>
+      {
+        console.log(res);
+      })
+  }
 
   getRandomColor() {
     var letters = '0123456789ABCDEF';
@@ -129,14 +137,11 @@ export class HomeComponent implements OnInit {
       tabla:this.cm,
       tipo:'solido'
     }
-    console.log(body)
+
     this.datos.datos(body).subscribe( (res:Datos [] ) =>
     {
       this.Data=res
-      console.log(res)
       this.dataSource.data=res
-      console.log(this.productos)
-      console.log(this.totales)
       this.grafica();
     })
 

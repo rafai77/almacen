@@ -40,4 +40,15 @@ export class DatosService {
     }
     return this.http.post(`${this.Dominio}/valores`,valores,{headers:headers});
   }
+  cms(): Observable<any>
+  {
+    var headers={
+      'vefificador':this.servicelog.tkget()
+    }
+    var body={
+      'id':this.servicelog.setid()
+    }
+    return this.http.post(`${this.Dominio}/cm-inver`,body,{headers:headers});
+
+  }
 }

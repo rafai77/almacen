@@ -11,12 +11,14 @@ export class HomeGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.service.checklog())
+      if(! this.service.log2())
       {
-        this.router.navigate(["/Login"]);
-        return false;
+        console.log("guardian", this.service.log2())
+        this.router.navigate(["Login"]);
+        return true;
 
       }
+      console.log("guardian", this.service.log2())
       return true;
   }
 

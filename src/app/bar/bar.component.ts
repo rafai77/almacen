@@ -14,12 +14,22 @@ import { LogService } from '../services/log.service';
 export class BarComponent implements OnInit {
 
   log:boolean=false;
-   cms=[]
-  dropa
+  cms=[]
+  invernaderos;
+  dropacutal;
+  planta;
 
   constructor(private datos:DatosService,private servicelog:LogService,private rotuer:Router)
   {
 
+  }
+  pos()// posicion del drop para sacar lo invernaderos
+  {
+    for (var i in this.cms)
+      if(this.cms[i].nombre==this.dropacutal)
+        return i
+
+    return -1
   }
 
   datosdrop()
@@ -31,13 +41,16 @@ export class BarComponent implements OnInit {
         console.log(res)
         nombres=res.map(item=> item.nombre)
         tablas=res.map(item=> item.nom2)
-        var j =0;
+        this.invernaderos=res.map(item=> item.invernaderos)
+        this.planta=res.map(item=> item.planta)
         for (var i in nombres)
          this.cms.push({
            "nombre": nombres[i],
             "nom2": tablas[i]
          })
-        console.log(this.cms);
+         this.pos()
+
+        console.log(this.invernaderos);
       })
 
   }
@@ -47,9 +60,12 @@ export class BarComponent implements OnInit {
 
   }
 
-  changeAction(n)
+  changeAction(n1,n)
   {
+
+   this.dropacutal=n1
    this.rotuer.navigate(['/Home/'+n]);
+
   }
 
   ngOnInit(): void {

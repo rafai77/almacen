@@ -13,7 +13,7 @@ export class LogGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       if(this.service.checklog())
       {
-        this.router.navigate(["/Home/"]);
+        this.router.navigate(["/Home/inventario"]);
         return false;
 
       }

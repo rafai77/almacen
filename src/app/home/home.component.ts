@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewChild,AfterViewInit} from '@angular/core';
+import {Component, OnInit, ViewChild,AfterViewInit, SimpleChanges} from '@angular/core';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table'
 import {MatPaginator} from '@angular/material/paginator';
 import { DatosService } from '../services/datos.service';
-import { Routes, RouterModule, Router, ActivatedRoute } from '@angular/router';
+import { Routes, RouterModule, Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Datos } from "../model/Datos";
 import {Chart} from 'chart.js'
 
@@ -30,22 +30,21 @@ export class HomeComponent implements OnInit {
   cm:string
 
 
+
   constructor(private datos:DatosService,private router:Router, private ar:ActivatedRoute)
   {
-    console.log("home")
-    if(this.ar.snapshot.paramMap.get('cm')!="")
-    this.cm=this.ar.snapshot.paramMap.get('cm');
-    else
-    this.cm="inventario"
-
-    console.log(this.ar.snapshot.paramMap.get('cm'));
     this.dataSource = new MatTableDataSource()
   }
 
   ngOnInit(): void
   {
-    this.labels();
-    this.obtener();
+    this.ar.paramMap.subscribe((params:ParamMap)=>
+    {
+      this.cm=params.get('cm');
+      this.labels();
+      this.obtener();
+    });
+
 
   }
 
@@ -63,6 +62,7 @@ export class HomeComponent implements OnInit {
 
   private labels()
   {
+
     var body={
       tabla:this.cm,
       tipo:'solido'
@@ -78,6 +78,7 @@ export class HomeComponent implements OnInit {
 
   private grafica()
   {
+
     var aux1=[]
     aux1=this.productos.map(function(item){
       return 0;
@@ -123,10 +124,12 @@ export class HomeComponent implements OnInit {
 
   obtener()
   {
+
     var body={
       tabla:this.cm,
       tipo:'solido'
     }
+    console.log(body)
     this.datos.datos(body).subscribe( (res:Datos [] ) =>
     {
       this.Data=res

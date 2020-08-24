@@ -21,7 +21,7 @@ export class LogComponent implements OnInit {
     {
       this.servicelog.login(form.value).subscribe(res=>
         {
-          (res.log==false)?console.log("nel"):this.rotuer.navigateByUrl('Home');
+          (res.log==false)?console.log("nel"):this.rotuer.navigateByUrl('/Home/inventario');
         }
         );
     }

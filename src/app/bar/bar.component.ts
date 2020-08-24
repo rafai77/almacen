@@ -13,17 +13,22 @@ import { LogService } from '../services/log.service';
 export class BarComponent implements OnInit {
 
   private log:boolean=false;
+
   constructor(private servicelog:LogService,private rotuer:Router)
   {
     this.log=this.servicelog.checklog()
   }
+
   ngOnChanges()
   {
+    //this.changeAction();
     this.checklog();
   }
-  changeAction(Nombre)
+
+  changeAction(n)
   {
-   this.rotuer.navigateByUrl('/Home/'+Nombre);
+    console.log(n)
+   this.rotuer.navigate(['/Home/'+n]);
   }
 
   ngOnInit(): void {

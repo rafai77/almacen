@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbNav } from '@ng-bootstrap/ng-bootstrap';
+import { DatosService } from '../services/datos.service';
 import { LogService } from '../services/log.service';
 
 
@@ -13,12 +14,33 @@ import { LogService } from '../services/log.service';
 export class BarComponent implements OnInit {
 
   log:boolean=false;
+   cms=[]
+  dropa
 
-  constructor(private servicelog:LogService,private rotuer:Router)
+  constructor(private datos:DatosService,private servicelog:LogService,private rotuer:Router)
   {
 
   }
 
+  datosdrop()
+  {
+    this.datos.cms().subscribe((res:any)=>
+      {
+        let nombres
+        let tablas
+        console.log(res)
+        nombres=res.map(item=> item.nombre)
+        tablas=res.map(item=> item.nom2)
+        var j =0;
+        for (var i in nombres)
+         this.cms.push({
+           "nombre": nombres[i],
+            "nom2": tablas[i]
+         })
+        console.log(this.cms);
+      })
+
+  }
   ngOnChanges()
   {
     //this.changeAction();
@@ -33,11 +55,11 @@ export class BarComponent implements OnInit {
   ngOnInit(): void {
     this.servicelog.checklog().subscribe( (res)=>
     {
-      console.log(res,"fdsgasdfga");
+      this.datosdrop();
       this.log=res;
     }
     );
-    console.log(this.log,"el buneo")
+
 
   }
 

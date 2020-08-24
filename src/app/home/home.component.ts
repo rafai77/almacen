@@ -41,21 +41,16 @@ export class HomeComponent implements OnInit {
     this.ar.paramMap.subscribe((params:ParamMap)=>
     {
       this.cm=params.get('cm');
+      console.log(this.cm)
       this.labels();
-      this.datosdrop()
+
       this.obtener();
     });
 
 
   }
 
-  datosdrop()
-  {
-    this.datos.cms().subscribe(res=>
-      {
-        console.log(res);
-      })
-  }
+
 
   getRandomColor() {
     var letters = '0123456789ABCDEF';

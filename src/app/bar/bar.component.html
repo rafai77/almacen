@@ -15,11 +15,7 @@
           <div ngbDropdown class="d-inline-block">
             <button  class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Cuartos De Maquinas</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <button (click)="changeAction('cm1')" ngbDropdownItem>Cuarto de maquinas 1</button>
-              <button (click)="changeAction('cm2')" ngbDropdownItem>Cuarto de maquinas 2</button>
-              <button (click)="changeAction('cm3')" ngbDropdownItem>Cuarto de maquinas 3</button>
-              <button (click)="changeAction('cm4')" ngbDropdownItem>Cuarto de maquinas 4</button>
-              <button (click)="changeAction('cm5')" ngbDropdownItem>Cuarto de maquinas 5</button>
+              <button ngbDropdownItem (click)="changeAction(dat['nom2'])" *ngFor="let dat of cms">{{dat['nombre']}}</button>
             </div>
           </div>
         </div>

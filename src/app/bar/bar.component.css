@@ -1,0 +1,11 @@
+.black-background {background-color:#000000;}
+.white {color:#ffffff;}
+
+#color
+{
+  background-color:#4c0082c0;
+  color:#ffffff;
+}
+
+.btn-black{background-color:#000;color: #FFF;}
+    .btn-black:hover{color: #FFF;}

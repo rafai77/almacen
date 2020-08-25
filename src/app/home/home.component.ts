@@ -28,7 +28,9 @@ export class HomeComponent implements OnInit {
   datachar=[]
   Data:Datos[]
   cm:string
-
+  cms=[]
+  Titulo=[]
+  private tipo:string=null
 
 
   constructor(private datos:DatosService,private router:Router, private ar:ActivatedRoute)
@@ -36,21 +38,78 @@ export class HomeComponent implements OnInit {
     this.dataSource = new MatTableDataSource()
   }
 
+  tipos(x):void
+  {
+    this.tipo=x;
+    console.log(x)
+    this. datosinver();
+    this.titulo()
+    this.labels();
+    this.obtener();
+  }
   ngOnInit(): void
   {
     this.ar.paramMap.subscribe((params:ParamMap)=>
     {
       this.cm=params.get('cm');
-      console.log(this.cm)
+      this. datosinver();
+      this.titulo()
       this.labels();
-
+      this.tipos(null)
       this.obtener();
     });
 
 
   }
 
+  datosinver()
+  {
+    this.datos.cms().subscribe((res:any)=>
+    {
+        let nombres
+        let tablas
+        console.log(res)
+        nombres=res.map(item=> item.nombre)
+        tablas=res.map(item=> item.nom2)
+        let p=res.map(item=> item.planta)
+        for (var i in nombres)
+        {
+          let c=""
+          console.log();
+          if(p[i]=='Pimiento')
+          c="#0CAC1F"
+          else
+          c="#FF4933"
+          this.cms.push({
+            "nombre": nombres[i],
+             "nom2": tablas[i],
+             "color":c
+          })
+        }
 
+         this.cms.push({
+          "nombre": "Alamacen General",
+          "nom2": "inventario",
+          "color":"#000"
+         })
+         this.titulo()
+
+    });
+  }
+  titulo()
+  {
+    console.log(this.cms)
+    this.Titulo=[]
+    for (var i in this.cms)
+    {
+      if(this.cms[i].nom2==this.cm)
+            this.Titulo.push({
+              "nombre":this.cms[i].nombre,
+              "color":this.cms[i].color
+            });
+    }
+
+  }
 
   getRandomColor() {
     var letters = '0123456789ABCDEF';
@@ -68,7 +127,7 @@ export class HomeComponent implements OnInit {
 
     var body={
       tabla:this.cm,
-      tipo:'solido'
+      tipo:this.tipo
     }
     this.datos.datos(body).subscribe( (res:any ) =>
     {
@@ -81,7 +140,7 @@ export class HomeComponent implements OnInit {
 
   private grafica()
   {
-
+    console.log(this.productos)
     var aux1=[]
     aux1=this.productos.map(function(item){
       return 0;
@@ -92,7 +151,10 @@ export class HomeComponent implements OnInit {
       this.getRandomColor()
       aux1[i]=this.color
     }
-
+    Chart.helpers.each(Chart.instances, function (instance) {
+      instance.destroy();
+    });
+      if (this.chart) this.chart.destroy();
     this.chart =new Chart('canvas',
       {
         type:'pie',
@@ -100,7 +162,7 @@ export class HomeComponent implements OnInit {
           //datchart
           labels:this.productos,
           datasets:[
-            {label:"ds",
+            {
             data:this.totales,
             borderColor:aux1,
             backgroundColor:aux1
@@ -121,16 +183,17 @@ export class HomeComponent implements OnInit {
           },
         }
 
-      });
+      }).update();
 
   }
 
   obtener()
   {
 
+    this.titulo()
     var body={
       tabla:this.cm,
-      tipo:'solido'
+      tipo:this.tipo
     }
 
     this.datos.datos(body).subscribe( (res:Datos [] ) =>

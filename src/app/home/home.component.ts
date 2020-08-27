@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   cm:string
   cms=[]
   Titulo=[]
-  private tipo:string=null
+  private tipo:string="ls"
 
 
   constructor(private datos:DatosService,private router:Router, private ar:ActivatedRoute)
@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
       this. datosinver();
       this.titulo()
       this.labels();
-      this.tipos(null)
+      this.tipos("ls")
       this.obtener();
     });
 
@@ -68,7 +68,6 @@ export class HomeComponent implements OnInit {
     {
         let nombres
         let tablas
-        console.log(res)
         nombres=res.map(item=> item.nombre)
         tablas=res.map(item=> item.nom2)
         let p=res.map(item=> item.planta)

@@ -27,7 +27,11 @@ export class LogService {
     this.user=localStorage.getItem('nombre');
     this.iduser=localStorage.getItem('iduser');
     if(this.token)
-    this.log=true;
+    {
+      this.log=true;
+      this.cad()
+    }
+
     else
     {
       this.log=false
@@ -35,9 +39,34 @@ export class LogService {
     }
 
   }
+  cad()
+  {
+    var headers={
+      'vefificador':this.tkget()
+    }
+  this.http.get(`${this.Dominio}/`,{headers:headers}).subscribe(res=>
+    {
+       if(res['vecido']==true)
+   {
+     this.log=false;
+     this.token= ' '
+     this.log=false;
+     localStorage.removeItem('tk');
+     localStorage.removeItem('nombre');
+     localStorage.removeItem('iduser');
+     return
+   }
+   return ;
+    }
+  );
+
+
+
+  }
 
   log2()
   {
+    this.cad()
    return  this.log ;
   }
   checklog():Observable<boolean>
@@ -82,6 +111,7 @@ export class LogService {
         if(res)
         {
           this.log=true;
+          console.log(res)
           //guardar el token
           this.tkset(res.token);
           this.guardarN(res.user.nombre);

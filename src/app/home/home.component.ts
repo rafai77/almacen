@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   color="";
   datachar=[]
   Data:Datos[]
-  cm:string
+  cm:string="inventario"
   cms=[]
   Titulo=[]
   private tipo:string="ls"
@@ -53,7 +53,9 @@ export class HomeComponent implements OnInit {
   {
     this.ar.paramMap.subscribe((params:ParamMap)=>
     {
+      this.logiS.cad()
       this.cm=params.get('cm');
+      console.log("cm")
       this. datosinver();
       this.titulo()
       this.labels();

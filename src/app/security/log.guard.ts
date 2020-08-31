@@ -15,7 +15,7 @@ export class LogGuard implements CanActivate {
       if(this.service.log2())
       {
         this.router.navigate(["/Home/inventario"]);
-        return true;
+        return false;
 
       }
       return true;

@@ -46,19 +46,18 @@ export class LogService {
     }
   this.http.get(`${this.Dominio}/`,{headers:headers}).subscribe(res=>
     {
-
+      console.log(res)
        if(res['vecido']==true)
    {
-     console.log(res);
+     console.log("sadasdasasdasdas",res);
      this.log=false;
      this.token= ' '
      this.log=false;
      localStorage.removeItem('tk');
      localStorage.removeItem('nombre');
      localStorage.removeItem('iduser');
-     return
+
    }
-   return ;
     }
   );
 
@@ -73,7 +72,8 @@ export class LogService {
   }
   checklog():Observable<boolean>
   {
-    console.log(this.log);
+    this.cad();
+    console.log(this.token);
     this.token=localStorage.getItem('tk');
     if(this.token)
     this.log=true;

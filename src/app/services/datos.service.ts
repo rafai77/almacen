@@ -20,6 +20,7 @@ export class DatosService {
 
   datos(valores): Observable<any>
   {
+    console.log(this.servicelog.tkget())
     var headers={
       'vefificador':this.servicelog.tkget()
     }

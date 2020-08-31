@@ -50,6 +50,14 @@ export class DatosService {
       'id':this.servicelog.setid()
     }
     return this.http.post(`${this.Dominio}/cm-inver`,body,{headers:headers});
+  }
 
+
+  formulaView(cm)
+  {
+    var headers={
+      'vefificador':this.servicelog.tkget()
+    }
+    return this.http.get(`${this.Dominio}/formulaView/${cm}`,{headers:headers});
   }
 }

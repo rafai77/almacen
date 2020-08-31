@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild,AfterViewInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit, ViewChild,AfterViewInit, SimpleChanges,Input } from '@angular/core';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table'
 import {MatPaginator} from '@angular/material/paginator';
@@ -7,6 +7,35 @@ import { Routes, RouterModule, Router, ActivatedRoute, ParamMap } from '@angular
 import { Datos } from "../model/Datos";
 import {Chart} from 'chart.js'
 import { LogService } from '../services/log.service';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+
+@Component({
+  selector: 'ngbd-modal-content',
+  template: `
+    <div class="modal-header">
+      <h4 class="modal-title">Hi there!</h4>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <a >{{totales}}</a>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    </div>
+  `
+})
+export class NgbdModalContent {
+
+  @Input() totales:[];
+
+
+  constructor(public activeModal: NgbActiveModal) {}
+}
+
+
 
 
 
@@ -34,7 +63,7 @@ export class HomeComponent implements OnInit {
   private tipo:string="ls"
 
 
-  constructor(private logiS:LogService,private datos:DatosService,private router:Router, private ar:ActivatedRoute)
+  constructor(private logiS:LogService,private datos:DatosService,private router:Router, private ar:ActivatedRoute,private modalService: NgbModal)
   {
     this.dataSource = new MatTableDataSource()
   }
@@ -43,7 +72,6 @@ export class HomeComponent implements OnInit {
   tipos(x):void
   {
     this.tipo=x;
-    console.log(x)
     this. datosinver();
     this.titulo()
     this.labels();
@@ -51,19 +79,36 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit(): void
   {
+    //this.formulaView();
     this.ar.paramMap.subscribe((params:ParamMap)=>
     {
       this.logiS.cad()
       this.cm=params.get('cm');
-      console.log("cm")
+      //this.formulaView();
       this. datosinver();
       this.titulo()
       this.labels();
       this.tipos("ls")
       this.obtener();
+
     });
 
 
+  }
+  formulaView()
+  {
+    this.datos.formulaView(this.cm).subscribe((res:any)=>
+      {
+        console.log(res);
+
+        const modalRef = this.modalService.open(NgbdModalContent);
+        modalRef.componentInstance.totales = res.map(i=>
+          {
+            return (i.productos.tostring()+"+"+i.cantidad.tostring())
+
+          });
+      }
+      );
   }
 
   datosinver()
@@ -78,7 +123,6 @@ export class HomeComponent implements OnInit {
         for (var i in nombres)
         {
           let c=""
-          console.log();
           if(p[i]=='Pimiento')
           c="#0CAC1F"
           else
@@ -101,7 +145,7 @@ export class HomeComponent implements OnInit {
   }
   titulo()
   {
-    console.log(this.cms)
+
     this.Titulo=[]
     for (var i in this.cms)
     {
@@ -143,7 +187,6 @@ export class HomeComponent implements OnInit {
 
   private grafica()
   {
-    console.log(this.productos)
     var aux1=[]
     aux1=this.productos.map(function(item){
       return 0;

@@ -6,6 +6,7 @@ import { LogService } from '../services/log.service';
 
 
 
+
 @Component({
   selector: 'app-bar',
   templateUrl: './bar.component.html',

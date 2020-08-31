@@ -3,9 +3,10 @@
 
 #color
 {
-  background-color:#4c0082c0;
+  background-color:rgba(74, 0, 128, 0.753);
   color:#ffffff;
 }
 
 .btn-black{background-color:#000;color: #FFF;}
     .btn-black:hover{color: #FFF;}
+

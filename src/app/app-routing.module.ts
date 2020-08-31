@@ -11,7 +11,7 @@ import { HomeadminComponent } from './homeadmin/homeadmin.component';
 const routes: Routes = [
             {path:'',component:HomeComponent ,canActivate:[HomeGuard]},
             {path:'Login',component:LogComponent,canActivate:[LogGuard]},
-            {path:'Home/:cm',component:HomeComponent,canActivate:[HomeGuard]},//componente para el home normal
+            {path:'Home/inventario',component:HomeComponent,canActivate:[HomeGuard]},//componente para el home normal
             {path:'**',component:HomeComponent ,canActivate:[HomeGuard],},
 ];
 @NgModule({

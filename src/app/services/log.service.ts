@@ -46,8 +46,10 @@ export class LogService {
     }
   this.http.get(`${this.Dominio}/`,{headers:headers}).subscribe(res=>
     {
+
        if(res['vecido']==true)
    {
+     console.log(res);
      this.log=false;
      this.token= ' '
      this.log=false;

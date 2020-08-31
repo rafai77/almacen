@@ -6,6 +6,7 @@ import { DatosService } from '../services/datos.service';
 import { Routes, RouterModule, Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Datos } from "../model/Datos";
 import {Chart} from 'chart.js'
+import { LogService } from '../services/log.service';
 
 
 
@@ -33,10 +34,11 @@ export class HomeComponent implements OnInit {
   private tipo:string="ls"
 
 
-  constructor(private datos:DatosService,private router:Router, private ar:ActivatedRoute)
+  constructor(private logiS:LogService,private datos:DatosService,private router:Router, private ar:ActivatedRoute)
   {
     this.dataSource = new MatTableDataSource()
   }
+
 
   tipos(x):void
   {

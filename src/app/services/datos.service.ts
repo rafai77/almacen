@@ -60,4 +60,18 @@ export class DatosService {
     }
     return this.http.get(`${this.Dominio}/formulaView/${cm}`,{headers:headers});
   }
+  mandarformula(cantidad,productos,cm)
+  {
+    var headers={
+      'vefificador':this.servicelog.tkget()
+    }
+    var body={
+      "productos":productos,
+      "cantidades":cantidad,
+      "cm":cm,
+    }
+    console.log(body)
+    return this.http.post(`${this.Dominio}/addconsumo/`,body,{headers:headers});
+
+  }
 }

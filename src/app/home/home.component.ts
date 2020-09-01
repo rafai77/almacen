@@ -14,13 +14,13 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'ngbd-modal-content',
   template: `
     <div class="modal-header">
-      <h4 class="modal-title">Hi there!</h4>
+      <h1 class="modal-title">Formula del dia de hoy</h1>
       <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <a >{{totales}}</a>
+      <a >{{formula}}</a>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
@@ -29,7 +29,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class NgbdModalContent {
 
-  @Input() totales:[];
+  @Input() formula:[];
 
 
   constructor(public activeModal: NgbActiveModal) {}
@@ -60,6 +60,8 @@ export class HomeComponent implements OnInit {
   cm:string="inventario"
   cms=[]
   Titulo=[]
+  productosf:any[];
+  cantidadesf:any[];
   private tipo:string="ls"
 
 
@@ -82,8 +84,10 @@ export class HomeComponent implements OnInit {
     //this.formulaView();
     this.ar.paramMap.subscribe((params:ParamMap)=>
     {
+
       this.logiS.cad()
       this.cm=params.get('cm');
+      this.formulaView();
       //this.formulaView();
       this. datosinver();
       this.titulo()
@@ -95,18 +99,27 @@ export class HomeComponent implements OnInit {
 
 
   }
+
+
+  Viewformula()
+  {
+    var formula:string=""
+    for (var i =0;i<this.productosf.length;i++)
+    {
+      formula+=" ("+ this.productosf[i]+"= "+ this.cantidadesf[i]+") +";
+    }
+    console.log(formula)
+    const modalRef = this.modalService.open(NgbdModalContent);
+    modalRef.componentInstance.formula = formula
+  }
   formulaView()
   {
+    if(this.cm!='inventario')
     this.datos.formulaView(this.cm).subscribe((res:any)=>
       {
         console.log(res);
-
-        const modalRef = this.modalService.open(NgbdModalContent);
-        modalRef.componentInstance.totales = res.map(i=>
-          {
-            return (i.productos.tostring()+"+"+i.cantidad.tostring())
-
-          });
+        this.productosf=res.map(i=> i.producto)
+        this.cantidadesf=res.map(i=> i.cantidad)
       }
       );
   }
@@ -231,6 +244,16 @@ export class HomeComponent implements OnInit {
 
       }).update();
 
+  }
+  aplicarformula()
+  {
+
+    console.log(this.cantidadesf,this.cantidadesf)
+    this.datos.mandarformula(this.cantidadesf,this.productosf,this.cm).subscribe((res:any)=>
+    {
+
+      console.log(res);
+    });
   }
 
   obtener()

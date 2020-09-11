@@ -75,7 +75,7 @@ export class DatosService {
 
   }
 
-  chartconsumo(cm): Observable<any>
+  chartconsumo(cm,f1,f2): Observable<any>
   {
     if(cm=="cm1")
     cm="consumocm1"
@@ -83,7 +83,9 @@ export class DatosService {
       'vefificador':this.servicelog.tkget()
     }
     var body={
-      "cm":cm
+      "cm":cm,
+      "f1":f1,
+      "f2":f2,
     }
     return this.http.post(`${this.Dominio}/Consumo/`,body,{headers:headers});
   }

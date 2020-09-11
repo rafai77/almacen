@@ -82,9 +82,10 @@
 
   </div>
 </div>
-<div class="container" id="con" style="height: 100%;width:100%;">
+
   <div class="row">
-    <div class="col-xl" id="div1">
+    <div class="col" id="div1">
+      <h1  style="color:{{Titulo[0].color}}">Tabla De Productos</h1>
       <table mat-table cdkColumnDef="customWidthClass" [dataSource]="dataSource" matSort class="mat-elevation-z8">
         <ng-container *ngFor="let dat of displayedColumns" matColumnDef={{dat}}>
           <th mat-header-cell *matHeaderCellDef mat-sort-header> {{dat}} </th>
@@ -95,15 +96,16 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     </div>
-    <div class="col-xl" id="divgraficas">
-      aqui va la grafica de consumo
+    <div class="col-xl 	col-sm-" id="divgraficas2">
+     <canvas  id="canvas2">
+      {{chartcon}}
+    </canvas>
     </div>
 
   </div>
-  <div class="col-xl" id="divgraficas">
+  <div class="row justify-content-md-center" id="divgraficas">
     <canvas id="canvas">
       {{chart}}
     </canvas>
   </div>
 
-</div>

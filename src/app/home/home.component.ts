@@ -8,7 +8,7 @@ import { Datos } from "../model/Datos";
 import { Chart } from 'chart.js'
 import { LogService } from '../services/log.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {NgbDate, NgbCalendar, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -70,17 +70,18 @@ export class HomeComponent implements OnInit {
   productosf: any[];
   cantidadesf: any[];
   private tipo: string = "ls"
-
+  dias_graficasConsumo = []
+  public chartcon: Chart
   hoveredDate: NgbDate | null = null;
 
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
 
 
-  constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter,private logiS: LogService, private datos: DatosService, private router: Router, private ar: ActivatedRoute, private modalService: NgbModal) {
+  constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private logiS: LogService, private datos: DatosService, private router: Router, private ar: ActivatedRoute, private modalService: NgbModal) {
     this.dataSource = new MatTableDataSource()
-    let x=new Date()
-    this.fromDate = calendar.getPrev(calendar.getToday(), 'd',calendar.getToday().day-1  )
+    let x = new Date()
+    this.fromDate = calendar.getPrev(calendar.getToday(), 'd', calendar.getToday().day - 1)
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 2);
   }
 
@@ -126,7 +127,7 @@ export class HomeComponent implements OnInit {
 
       this.logiS.cad()
       this.cm = params.get('cm');
-      this.chartconsumo();
+     // this.chartconsumo();
       this.formulaView();
       //this.formulaView();
       this.datosinver();
@@ -255,9 +256,7 @@ export class HomeComponent implements OnInit {
       this.getRandomColor()
       aux1[i] = this.color
     }
-    Chart.helpers.each(Chart.instances, function (instance) {
-      instance.destroy();
-    });
+
     if (this.chart) this.chart.destroy();
     this.chart = new Chart('canvas',
       {
@@ -292,7 +291,7 @@ export class HomeComponent implements OnInit {
   }
   aplicarformula() {
 
-    console.log(this.cantidadesf, this.cantidadesf)
+   // console.log(this.cantidadesf, this.cantidadesf)
     this.datos.mandarformula(this.cantidadesf, this.productosf, this.cm).subscribe((res: any) => {
 
       console.log(res);
@@ -300,7 +299,7 @@ export class HomeComponent implements OnInit {
   }
 
   obtener() {
-    this.chartconsumo();
+
     this.titulo()
     var body = {
       tabla: this.cm,
@@ -311,18 +310,134 @@ export class HomeComponent implements OnInit {
       this.Data = res
       this.dataSource.data = res
       this.grafica();
+      this.chartconsumo();
     })
 
   }
 
 
   //datos para la  grafica
-  chartconsumo()
-  {
-    this.datos.chartconsumo(this.cm).subscribe((res:any)=>
-    {
-     console.log(res);
-    // var dias =;
+  chartconsumo() {
+    var mes = "";
+    if (this.fromDate.month.toString().length > 1)
+      mes = this.fromDate.month.toString();
+    else
+      mes = "0" + this.fromDate.month.toString()
+    var f1 = new Date(this.fromDate.year.toString() + "-" + mes + "-" + this.fromDate.day.toString());
+
+    if (this.toDate.month.toString().length > 1)
+      mes = this.toDate.month.toString();
+    else
+      mes = "0" + this.toDate.month.toString()
+    var f2 = new Date(this.toDate.year.toString() + "-" + mes + "-" + this.toDate.day.toString());
+
+    var resta = f2.getTime() - f1.getTime()
+    var dias = (Math.round(resta / (1000 * 60 * 60 * 24)));
+    this.datos.chartconsumo(this.cm, f1, f2).subscribe((res: any) => {
+      var dia = "";
+      var aux = this.fromDate;
+      this.dias_graficasConsumo = [];
+      for (let i = 0; i <= dias; i++) {
+        if (aux.day.toString().length > 1)
+          dia = aux.day.toString();
+        else
+          dia = "0" + aux.day.toString()
+        if (aux.month.toString().length > 1)
+          mes = aux.month.toString();
+        else
+          mes = "0" + aux.month.toString()
+        this.dias_graficasConsumo.push(((aux.year.toString() + "-" + mes + "-" + dia)));
+        aux = this.calendar.getNext(aux, "d", 1);
+      }
+      console.log(this.dias_graficasConsumo);
+      var diasvalor = []
+      var aux2 = []
+      var contador = 0;
+      var data_chart = []
+      var dataset = []
+      aux2 = diasvalor.slice();
+      for (let i = 0; i <= this.dias_graficasConsumo.length; i++) {
+        diasvalor[i] = 0;
+      }
+      aux2 = diasvalor.slice();
+      if (this.chartcon) this.chartcon.destroy();
+      console.log(diasvalor)
+
+      for (var i in res) {
+        for (var j in res) {
+            console.log(this.dias_graficasConsumo.includes(res[i].fecha))
+            if (this.dias_graficasConsumo.includes(res[j]["fecha"]))
+              aux2[this.dias_graficasConsumo.indexOf(res[j]["fecha"])] = (res[i].cantidad)
+            else
+              aux2[j] = 0
+        }
+        this.getRandomColor()
+        data_chart.push(
+          {
+            label: res[i].producto,
+            data: aux2.slice(),
+            borderColor: this.color,
+            lineTension: .25
+          })
+        aux2 = diasvalor.slice();
+
+      }
+      console.log(data_chart)
+
+      this.chartcon=new Chart('canvas2',{
+        type:'line',
+        data:{
+
+          labels:this.dias_graficasConsumo,//.map(item => new Intl.DateTimeFormat('es-MX',{month:'long',day:'numeric'}).format(new Date(item))),
+          datasets:data_chart
+        },
+        options:
+        {
+
+
+
+          title:{
+            display:true,
+            text:"Consumo de "+this.Titulo[0].nombre,
+            fontSize:30,
+
+
+          },
+          legend:{
+           // display: false,
+            position:'bottom',
+            labels:
+            {
+              padding:20,
+              fontFamily:'system-ui',
+              fontColor:'black'
+            }
+
+          },
+          tooltips:
+          {
+            backgroundColor:'#05b4f6',
+            mode:'x'
+          },
+          elements:
+          {
+            line:{
+              borderWidth:4,
+              fill:false
+            },
+            point:{
+              radius:6,
+              borderWidth:4,
+              backgroundColor:'white',
+              hoverRadius:8
+            }
+          }
+        }
+
+      });
+
+      console.log(res);
+      // var dias =;
 
     });
 

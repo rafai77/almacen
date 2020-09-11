@@ -1,56 +1,109 @@
-
 <app-bar></app-bar>
 
-<div class="container" id="" >
+<div class="container" id="">
   <div class="row" style="padding-left: 2%;">
-  <button ngbTooltip="Recargar Pagina" (click)="obtener()" class="btn btn-primary" value="Send"  ><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-repeat" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path fill-rule="evenodd" d="M2.854 7.146a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L2.5 8.207l1.646 1.647a.5.5 0 0 0 .708-.708l-2-2zm13-1a.5.5 0 0 0-.708 0L13.5 7.793l-1.646-1.647a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0 0-.708z"/>
-    <path fill-rule="evenodd" d="M8 3a4.995 4.995 0 0 0-4.192 2.273.5.5 0 0 1-.837-.546A6 6 0 0 1 14 8a.5.5 0 0 1-1.001 0 5 5 0 0 0-5-5zM2.5 7.5A.5.5 0 0 1 3 8a5 5 0 0 0 9.192 2.727.5.5 0 1 1 .837.546A6 6 0 0 1 2 8a.5.5 0 0 1 .501-.5z"/>
-  </svg></button>
-  <div  style="padding-left: 1%;  color:white; padding">
-    <h1 class="display-1" style="color:{{Titulo[0].color}}">{{Titulo[0].nombre}}</h1>
-  </div>
-  <div style="padding-left: 2%; " class="btn-group #color " role="group" aria-label="Basic example" id="color">
-    <button  (click)="tipos('Liquido')" style="padding-left: 0%;"  type="button btn-group-sm "  class="btn btn-secondary">Liquidos</button>
-    <button (click)="tipos('Solido')" style="padding-left: 0%;" type="button btn-group-sm "  class="btn btn-secondary">Solidos</button>
-    <button (click)="tipos('ls')" style="padding-left: 0%;" type="button btn-group-sm "  class="btn btn-secondary">Ambos</button>
-    <div ngbDropdown   class="btn-group" role="group">
-      <button  class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle></button>
-      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <button ngbDropdownItem (click)="aplicarformula()" >Aplicar Formula <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-bar-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z"/>
-        </svg></button>
-        <button ngbDropdownItem (click)="Viewformula()">ver  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-eye-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-          <path fill-rule="evenodd" d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-        </svg></button>
-
-      </div>
+    <button ngbTooltip="Recargar Pagina" (click)="obtener()" class="btn btn-primary" value="Send"><svg width="1em"
+        height="1em" viewBox="0 0 16 16" class="bi bi-arrow-repeat" fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+          d="M2.854 7.146a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L2.5 8.207l1.646 1.647a.5.5 0 0 0 .708-.708l-2-2zm13-1a.5.5 0 0 0-.708 0L13.5 7.793l-1.646-1.647a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0 0-.708z" />
+        <path fill-rule="evenodd"
+          d="M8 3a4.995 4.995 0 0 0-4.192 2.273.5.5 0 0 1-.837-.546A6 6 0 0 1 14 8a.5.5 0 0 1-1.001 0 5 5 0 0 0-5-5zM2.5 7.5A.5.5 0 0 1 3 8a5 5 0 0 0 9.192 2.727.5.5 0 1 1 .837.546A6 6 0 0 1 2 8a.5.5 0 0 1 .501-.5z" />
+      </svg></button>
+    <div style="padding-left: 1%;  color:white; padding">
+      <h1 class="display-1" style="color:{{Titulo[0].color}}">{{Titulo[0].nombre}}</h1>
     </div>
+    <div style="padding-left: 2%; " class="btn-group #color " role="group" aria-label="Basic example" id="color">
+      <button (click)="tipos('Liquido')" style="padding-left: 0%;" type="button btn-group-sm "
+        class="btn btn-secondary">Liquidos</button>
+      <button (click)="tipos('Solido')" style="padding-left: 0%;" type="button btn-group-sm "
+        class="btn btn-secondary">Solidos</button>
+      <button (click)="tipos('ls')" style="padding-left: 0%;" type="button btn-group-sm "
+        class="btn btn-secondary">Ambos</button>
+      <div ngbDropdown class="btn-group" role="group">
+        <button class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle></button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem (click)="aplicarformula()">Aplicar Formula <svg width="1em" height="1em"
+              viewBox="0 0 16 16" class="bi bi-arrow-bar-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z" />
+            </svg></button>
+          <button ngbDropdownItem (click)="Viewformula()">ver <svg width="1em" height="1em" viewBox="0 0 16 16"
+              class="bi bi-eye-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+              <path fill-rule="evenodd"
+                d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+            </svg></button>
+
+        </div>
+      </div>
+      <form class="form-inline">
+        <div class="form-group hidden">
+          <div class="input-group">
+
+            <ng-template #t let-date let-focused="focused">
+              <span class="custom-day"
+                    [class.focused]="focused"
+                    [class.range]="isRange(date)"
+                    [class.faded]="isHovered(date) || isInside(date)"
+                    (mouseenter)="hoveredDate = date"
+                    (mouseleave)="hoveredDate = null">
+                {{ date.day }}
+              </span>
+            </ng-template>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <input #dptoDate
+                   class="form-control" placeholder="yyyy-mm-dd"
+                   name="dptoDate"
+                   [value]="formatter.format(fromDate)"
+                   >
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="datepicker.toggle()" type="button"></button>
+              <input name="datepicker"
+                   class="form-control"
+                   ngbDatepicker
+                   #datepicker="ngbDatepicker"
+                   [autoClose]="'outside'"
+                   (dateSelect)="onDateSelection($event)"
+                   [displayMonths]="2"
+                   [dayTemplate]="t"
+                   outsideDays="hidden"
+                   [startDate]="fromDate!">
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+
   </div>
 </div>
-</div>
-<div class="container" id="con"style="height: 100%;width:100%;">
-    <div class="row" >
-      <div class="col-xl" id="div1">
-        <table mat-table cdkColumnDef="customWidthClass" [dataSource]="dataSource" matSort class="mat-elevation-z8">
-          <ng-container *ngFor="let dat of displayedColumns" matColumnDef={{dat}}>
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{dat}} </th>
-              <td style="width:150px" [ngClass]="'customWidthClass'" mat-cell *matCellDef="let element"> {{" "+element[dat]}} </td>
-            </ng-container>
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-      </div>
-      <div  class="col-xl" id="divgraficas">
-        aqui va la grafica de consumo
-      </div>
+<div class="container" id="con" style="height: 100%;width:100%;">
+  <div class="row">
+    <div class="col-xl" id="div1">
+      <table mat-table cdkColumnDef="customWidthClass" [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <ng-container *ngFor="let dat of displayedColumns" matColumnDef={{dat}}>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{dat}} </th>
+          <td style="width:150px" [ngClass]="'customWidthClass'" mat-cell *matCellDef="let element">
+            {{" "+element[dat]}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+    <div class="col-xl" id="divgraficas">
+      aqui va la grafica de consumo
+    </div>
 
-    </div>
-    <div  class="col-xl" id="divgraficas">
-      <canvas id="canvas">
-        {{chart}}
-      </canvas>
-    </div>
+  </div>
+  <div class="col-xl" id="divgraficas">
+    <canvas id="canvas">
+      {{chart}}
+    </canvas>
+  </div>
 
 </div>

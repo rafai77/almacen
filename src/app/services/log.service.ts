@@ -73,7 +73,7 @@ export class LogService {
   checklog():Observable<boolean>
   {
     this.cad();
-    console.log(this.token);
+   // console.log(this.token);
     this.token=localStorage.getItem('tk');
     if(this.token)
     this.log=true;

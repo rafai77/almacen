@@ -39,7 +39,7 @@ export class BarComponent implements OnInit {
       {
         let nombres
         let tablas
-        console.log(res)
+        //console.log(res)
         nombres=res.map(item=> item.nombre)
         tablas=res.map(item=> item.nom2)
         this.invernaderos=res.map(item=> item.invernaderos)
@@ -51,7 +51,7 @@ export class BarComponent implements OnInit {
          })
          this.pos()
 
-        console.log(this.invernaderos);
+        //console.log(this.invernaderos);
       })
 
   }

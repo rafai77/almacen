@@ -7,7 +7,7 @@ import { Datos } from "../model/Datos";
 import { tap } from 'rxjs/operators';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { LogService } from './log.service';
-;
+
 
 
 @Injectable({
@@ -20,7 +20,7 @@ export class DatosService {
 
   datos(valores): Observable<any>
   {
-    console.log(this.servicelog.tkget())
+    //console.log(this.servicelog.tkget())
     var headers={
       'vefificador':this.servicelog.tkget()
     }
@@ -70,8 +70,23 @@ export class DatosService {
       "cantidades":cantidad,
       "cm":cm,
     }
-    console.log(body)
+
     return this.http.post(`${this.Dominio}/addconsumo/`,body,{headers:headers});
 
   }
+
+  chartconsumo(cm): Observable<any>
+  {
+    if(cm=="cm1")
+    cm="consumocm1"
+    var headers={
+      'vefificador':this.servicelog.tkget()
+    }
+    var body={
+      "cm":cm
+    }
+    return this.http.post(`${this.Dominio}/Consumo/`,body,{headers:headers});
+  }
+
+
 }

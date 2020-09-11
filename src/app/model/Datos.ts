@@ -2,7 +2,7 @@ export interface Datos
 {
   id_producto:string,
   producto:string
-  total:ConstrainDouble
+  total:any
   tipo:string
   unidad:string
 }

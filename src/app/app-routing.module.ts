@@ -6,6 +6,7 @@ import { LogComponent } from './log/log.component';
 import { HomeComponent } from './home/home.component';
 import {HomeGuard} from './security/home.guard'
 import { HomeadminComponent } from './homeadmin/homeadmin.component';
+import { CommonModule } from '@angular/common';
 
 
 const routes: Routes = [
@@ -16,6 +17,6 @@ const routes: Routes = [
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [CommonModule,RouterModule]
 })
 export class AppRoutingModule { }

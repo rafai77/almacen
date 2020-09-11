@@ -17,6 +17,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import{FormsModule} from '@angular/forms'
 import { CookieService } from 'ngx-cookie-service';
 import { BarComponent } from './bar/bar.component';
+import { CommonModule } from "@angular/common";
+
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { BarComponent } from './bar/bar.component';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,

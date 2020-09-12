@@ -292,7 +292,7 @@ export class HomeComponent implements OnInit {
   aplicarformula() {
 
    // console.log(this.cantidadesf, this.cantidadesf)
-    this.datos.mandarformula(this.cantidadesf, this.productosf, this.cm).subscribe((res: any) => {
+    this.datos.mandarformula(this.cantidadesf, this.productosf, this.cm,this.Data).subscribe((res: any) => {
 
       console.log(res);
     });

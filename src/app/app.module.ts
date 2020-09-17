@@ -21,6 +21,7 @@ import { CommonModule } from "@angular/common";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { AddpedidoComponent } from './addpedido/addpedido.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     BarComponent,
     HomeComponent,
     HomeadminComponent,
-    LogComponent
+    LogComponent,
+    AddpedidoComponent
   ],
   imports: [
     BrowserModule,

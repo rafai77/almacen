@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { DatosService } from '../services/datos.service';
 import { LogService } from '../services/log.service';
@@ -20,7 +20,7 @@ export class BarComponent implements OnInit {
   dropacutal;
   planta;
 
-  constructor(private datos:DatosService,private servicelog:LogService,private rotuer:Router)
+  constructor( private ar: ActivatedRoute,private datos:DatosService,private servicelog:LogService,private rotuer:Router)
   {
 
   }
@@ -91,5 +91,16 @@ export class BarComponent implements OnInit {
     return this.servicelog.getnombre()
   }
   isNavbarCollapsed=true;
+
+  mandarPedidos()
+  {
+    this.ar.paramMap.subscribe((params: ParamMap) => {
+      //console.log( params.get('cm'))
+      let n = params.get('cm')
+       this.rotuer.navigate(['/pedido/'+n]);
+    })
+
+
+  }
 
 }

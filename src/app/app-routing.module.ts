@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import {HomeGuard} from './security/home.guard'
 import { HomeadminComponent } from './homeadmin/homeadmin.component';
 import { CommonModule } from '@angular/common';
+import { AddpedidoComponent } from './addpedido/addpedido.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
             { path: '',   redirectTo: 'Home/inventario', pathMatch: 'full' },
             {path:'Login',component:LogComponent,canActivate:[LogGuard]},
             {path:'Home/:cm',component:HomeComponent,canActivate:[HomeGuard]},//componente para el home normal
+            {path:'pedido/:cm',component:AddpedidoComponent,canActivate:[HomeGuard]},
             //{path:'**',component:HomeComponent ,canActivate:[HomeGuard],},
 ];
 @NgModule({

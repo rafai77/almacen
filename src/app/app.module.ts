@@ -18,6 +18,9 @@ import{FormsModule} from '@angular/forms'
 import { CookieService } from 'ngx-cookie-service';
 import { BarComponent } from './bar/bar.component';
 import { CommonModule } from "@angular/common";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 @NgModule({
@@ -39,7 +42,9 @@ import { CommonModule } from "@angular/common";
     MatPaginatorModule,
     MatSelectModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    //ServiceWorkerModule.register('ngsw-worker.js', { enabled: true})
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [LogService,CookieService],
   bootstrap: [AppComponent]

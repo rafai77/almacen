@@ -9,6 +9,7 @@ import { Chart } from 'chart.js'
 import { LogService } from '../services/log.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import {SwPush} from '@angular/service-worker';
 
 
 
@@ -73,12 +74,15 @@ export class HomeComponent implements OnInit {
   dias_graficasConsumo = []
   public chartcon: Chart
   hoveredDate: NgbDate | null = null;
-
+  private publicKey= 'BPu9H4WQdDC2Ll6h7KQNrQqOs1LzRL5aXG-oNhr4raRIdwKdxPugDyl6FuYSJzvpwI0M6j35q_obeEbzrriKjzU';
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
 
 
-  constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private logiS: LogService, private datos: DatosService, private router: Router, private ar: ActivatedRoute, private modalService: NgbModal) {
+  constructor( private swpush:SwPush,private calendar: NgbCalendar, public formatter: NgbDateParserFormatter,
+    private logiS: LogService, private datos: DatosService, private router: Router,
+    private ar: ActivatedRoute, private modalService: NgbModal,
+   ) {
     this.dataSource = new MatTableDataSource()
     let x = new Date()
     this.fromDate = calendar.getPrev(calendar.getToday(), 'd', calendar.getToday().day - 1)
@@ -123,13 +127,14 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit(): void {
     //this.formulaView();
-    this.ar.paramMap.subscribe((params: ParamMap) => {
 
+    this.ar.paramMap.subscribe((params: ParamMap) => {
+     // this.pushSuscrip()
       this.logiS.cad()
       this.cm = params.get('cm');
      // this.chartconsumo();
       this.formulaView();
-      //this.formulaView();
+      this.formulaView();
       this.datosinver();
       this.titulo()
       this.labels();
@@ -172,7 +177,7 @@ export class HomeComponent implements OnInit {
   formulaView() {
     if (this.cm != 'inventario')
       this.datos.formulaView(this.cm).subscribe((res: any) => {
-        //console.log(res);
+        console.log(res);
         this.productosf = res.map(i => i.producto)
         this.cantidadesf = res.map(i => i.cantidad)
       }
@@ -307,6 +312,7 @@ export class HomeComponent implements OnInit {
     }
 
     this.datos.datos(body).subscribe((res: Datos[]) => {
+      this.pushSuscrip()
       this.Data = res
       this.dataSource.data = res
       this.grafica();
@@ -318,6 +324,7 @@ export class HomeComponent implements OnInit {
 
   //datos para la  grafica
   chartconsumo() {
+
     var mes = "";
     if (this.fromDate.month.toString().length > 1)
       mes = this.fromDate.month.toString();
@@ -349,7 +356,8 @@ export class HomeComponent implements OnInit {
         this.dias_graficasConsumo.push(((aux.year.toString() + "-" + mes + "-" + dia)));
         aux = this.calendar.getNext(aux, "d", 1);
       }
-      console.log(this.dias_graficasConsumo);
+      //console.log(this.dias_graficasConsumo);
+      var lab=res.map(item=> item.producto)
       var diasvalor = []
       var aux2 = []
       var contador = 0;
@@ -361,11 +369,15 @@ export class HomeComponent implements OnInit {
       }
       aux2 = diasvalor.slice();
       if (this.chartcon) this.chartcon.destroy();
-      console.log(diasvalor)
+      var lab = lab.filter(function(item, index, array) {
+        return array.indexOf(item) === index;
+      })
+      console.log(lab);
 
-      for (var i in res) {
+     // console.log(diasvalor)
+      for (var i in lab) {
         for (var j in res) {
-            console.log(this.dias_graficasConsumo.includes(res[i].fecha))
+            //console.log(this.dias_graficasConsumo.includes(res[i].fecha))
             if (this.dias_graficasConsumo.includes(res[j]["fecha"]))
               aux2[this.dias_graficasConsumo.indexOf(res[j]["fecha"])] = (res[i].cantidad)
             else
@@ -382,7 +394,7 @@ export class HomeComponent implements OnInit {
         aux2 = diasvalor.slice();
 
       }
-      console.log(data_chart)
+    //  console.log(data_chart)
 
       this.chartcon=new Chart('canvas2',{
         type:'line',
@@ -436,10 +448,31 @@ export class HomeComponent implements OnInit {
 
       });
 
-      console.log(res);
+     // console.log(res);
       // var dias =;
 
     });
 
   }
+
+
+
+
+  async pushSuscrip()
+  {
+
+    if(!this.swpush.isEnabled)
+    {
+      console.log("Notificacion no es valida ")
+
+    }
+    var dat= await this.swpush.requestSubscription({
+      serverPublicKey:this.publicKey,
+    })
+    this.datos.notificacion(dat)
+    //console.log(dat,"datosssss")
+  }
+
+
+
 }

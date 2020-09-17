@@ -10,10 +10,11 @@ import { CommonModule } from '@angular/common';
 
 
 const routes: Routes = [
-            {path:'',component:HomeComponent ,canActivate:[HomeGuard]},
+            //{path:'',component:HomeComponent ,canActivate:[HomeGuard]},
+            { path: '',   redirectTo: 'Home/inventario', pathMatch: 'full' },
             {path:'Login',component:LogComponent,canActivate:[LogGuard]},
             {path:'Home/:cm',component:HomeComponent,canActivate:[HomeGuard]},//componente para el home normal
-            {path:'**',component:HomeComponent ,canActivate:[HomeGuard],},
+            //{path:'**',component:HomeComponent ,canActivate:[HomeGuard],},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

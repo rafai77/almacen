@@ -92,4 +92,14 @@ export class DatosService {
   }
 
 
+  notificacion(pol):Observable<any>
+  {
+    //console.log(pol);
+    var body={
+      d1:pol,
+      d2:JSON.stringify(pol),
+      d3:"hi"
+    }
+    return this.http.post(`${this.Dominio}/not`,body);
+  }
 }

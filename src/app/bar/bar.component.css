@@ -10,3 +10,8 @@
 .btn-black{background-color:#000;color: #FFF;}
     .btn-black:hover{color: #FFF;}
 
+
+
+.dropdown-toggle::after {
+    display:none;
+}

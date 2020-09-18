@@ -23,7 +23,6 @@ import { environment } from '../environments/environment';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AddpedidoComponent } from './addpedido/addpedido.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +33,7 @@ import { AddpedidoComponent } from './addpedido/addpedido.component';
     AddpedidoComponent
   ],
   imports: [
+
     BrowserModule,
     CommonModule,
     AppRoutingModule,
@@ -45,8 +45,9 @@ import { AddpedidoComponent } from './addpedido/addpedido.component';
     MatSelectModule,
     MatSortModule,
     MatTableModule,
-    //ServiceWorkerModule.register('ngsw-worker.js', { enabled: true})
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    //ServiceWorkerModule.register('ngsw-worker.js', { enabled: true}),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+     /* or CommonModule */
   ],
   providers: [LogService,CookieService],
   bootstrap: [AppComponent]

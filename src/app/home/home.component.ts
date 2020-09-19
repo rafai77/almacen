@@ -358,6 +358,7 @@ export class HomeComponent implements OnInit {
       }
       //console.log(this.dias_graficasConsumo);
       var lab=res.map(item=> item.producto)
+
       var diasvalor = []
       var aux2 = []
       var contador = 0;
@@ -372,21 +373,23 @@ export class HomeComponent implements OnInit {
       var lab = lab.filter(function(item, index, array) {
         return array.indexOf(item) === index;
       })
-      console.log(lab);
 
-     // console.log(diasvalor)
       for (var i in lab) {
         for (var j in res) {
-            //console.log(this.dias_graficasConsumo.includes(res[i].fecha))
+            if(lab[i]==res[j].producto)
             if (this.dias_graficasConsumo.includes(res[j]["fecha"]))
-              aux2[this.dias_graficasConsumo.indexOf(res[j]["fecha"])] = (res[i].cantidad)
+            {
+            //  console.log(this.dias_graficasConsumo.indexOf(res[j]["fecha"]),res[j]["fecha"])
+              aux2[this.dias_graficasConsumo.indexOf(res[j]["fecha"])] = (res[j]["cantidad"])
+            }
+
             else
               aux2[j] = 0
         }
         this.getRandomColor()
         data_chart.push(
           {
-            label: res[i].producto,
+            label: lab[i],
             data: aux2.slice(),
             borderColor: this.color,
             lineTension: .25
@@ -394,7 +397,7 @@ export class HomeComponent implements OnInit {
         aux2 = diasvalor.slice();
 
       }
-    //  console.log(data_chart)
+      console.log(data_chart)
 
       this.chartcon=new Chart('canvas2',{
         type:'line',

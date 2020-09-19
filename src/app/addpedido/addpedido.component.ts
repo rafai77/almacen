@@ -14,7 +14,7 @@ import { LogService } from '../services/log.service';
   selector: 'ngbd-modal-content',
   template: `
     <div class="modal-header">
-      <h1 class="modal-title">Formula del dia de hoy</h1>
+      <h1 class="modal-title">Pedidos</h1>
       <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -22,9 +22,10 @@ import { LogService } from '../services/log.service';
     <div class="modal-body">
       <h1>Pedidos:</h1>
       <ul class="list-group">
+
         <li *ngFor="let i of producto">{{i}}</li>
       </ul>
-
+      <p>{{producto}}</p>
 
     </div>
     <div class="modal-footer">
@@ -62,6 +63,7 @@ export class AddpedidoComponent implements OnInit {
   productos:[]
   staticAlertClosed = false;
   successMessage = '';
+  datos_enviar=[]
 
 
   private _success = new Subject<string>();
@@ -90,16 +92,24 @@ export class AddpedidoComponent implements OnInit {
     this.datos.datos(body).subscribe((res:any)=>
       {
         this.productos=res.map(item=> item.producto)
-        console.log(res);
+        this.
+        datos_enviar=[]=res.map(item=> ({
+          "id":item.id_producto,
+          "producto":item.producto,
+          "value":0
+        }))
+
+        console.log(this.datos_enviar)
       }
     );
   }
   mandar(form)
   {
-    this.porductoS=form._directives.map(item=> item.name)
-    //console.log(this.porductoS)
-    const modalRef = this.modalService.open(NgbdModalContent);
-    modalRef.componentInstance.producto = this.porductoS;
+    this.porductoS=form._directives.map(item=> ({"value":item.value}))
+    console.log(this.porductoS)
+    //const modalRef = this.modalService.open(NgbdModalContent);
+    //modalRef.componentInstance.producto = this.porductoS;
+
 
   }
 

@@ -102,4 +102,13 @@ export class DatosService {
     }
     return this.http.post(`${this.Dominio}/not`,body);
   }
+
+  sendpedido(datos)
+  {
+    var headers={
+      'vefificador':this.servicelog.tkget()
+    }
+    return this.http.post(`${this.Dominio}/addPedidos`,datos,{headers:headers});
+  }
+
 }

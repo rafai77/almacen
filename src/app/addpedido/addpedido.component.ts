@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { NgbActiveModal, NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
@@ -64,16 +64,19 @@ export class AddpedidoComponent implements OnInit {
   staticAlertClosed = false;
   successMessage = '';
   datos_enviar=[]
+  cm="";
 
 
   private _success = new Subject<string>();
   constructor( public formatter: NgbDateParserFormatter,
     private logiS: LogService, private datos: DatosService, private router: Router,
-    private ar: ActivatedRoute, private modalService: NgbModal) { }
+    private ar: ActivatedRoute, private modalService: NgbModal) {
+    }
 
 
   ngOnInit(): void {
-
+    this.ar.paramMap.subscribe((params: ParamMap) => {
+    this.cm = params.get('cm');
     this.obtener();
     setTimeout(() => this.staticAlertClosed = true, 20000);
 
@@ -81,6 +84,7 @@ export class AddpedidoComponent implements OnInit {
     this._success.pipe(
       debounceTime(5000)
     ).subscribe(() => this.successMessage = '');
+    });
   }
 
   obtener()
@@ -99,14 +103,25 @@ export class AddpedidoComponent implements OnInit {
           "value":0
         }))
 
-        console.log(this.datos_enviar)
+        //console.log(this.datos_enviar)
       }
     );
   }
   mandar(form)
   {
     this.porductoS=form._directives.map(item=> ({"value":item.value}))
-    console.log(this.porductoS)
+    for (var i in this.datos_enviar)
+      if(this.porductoS[i]["value"])
+        this.datos_enviar[i]["value"]=parseInt(this.porductoS[i]["value"])
+    let body={
+      "datos":this.datos_enviar,
+      "cm":this.cm
+    }
+    this.datos.sendpedido(body).subscribe((res:any)=>
+    {
+      console.log(res)
+    })
+
     //const modalRef = this.modalService.open(NgbdModalContent);
     //modalRef.componentInstance.producto = this.porductoS;
 

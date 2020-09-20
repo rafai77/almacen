@@ -315,8 +315,12 @@ export class HomeComponent implements OnInit {
     {
       this.datos.mandarformula(this.cantidadesf, this.productosf, this.cm,this.Data).subscribe((res: any) => {
         console.log(res);
+        if(res["error"])
+          this.mensajeError=res["status"]
+        else
+          this.mensajeError="Formula aplicada "
       });
-      this.mensajeError="Formula aplicada "
+
     }
     else
       this.mensajeError="no tiene suficiente producto para la formula"

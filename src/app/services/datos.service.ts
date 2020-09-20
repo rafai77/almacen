@@ -103,12 +103,23 @@ export class DatosService {
     return this.http.post(`${this.Dominio}/not`,body);
   }
 
-  sendpedido(datos)
+  sendpedido(datos):Observable<any>
   {
     var headers={
       'vefificador':this.servicelog.tkget()
     }
     return this.http.post(`${this.Dominio}/addPedidos`,datos,{headers:headers});
+  }
+
+  getpedidos(datos):Observable<any>
+  {
+      var headers={
+      'vefificador':this.servicelog.tkget()
+    }
+    var body={
+      cm:datos
+    }
+    return this.http.post(`${this.Dominio}/viewPedidos`,body,{headers:headers});
   }
 
 }

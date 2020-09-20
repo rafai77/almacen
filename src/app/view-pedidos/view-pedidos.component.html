@@ -2,26 +2,33 @@
 
 <div class="container">
   <div class="row">
-    <div class="card columns" id="div">
 
-      <div class="card-body">
-        <h1>Orden en proceso de aprobacion</h1>
+    <div class="card column" id="div" >
+
+      <div class="card-body" style="padding-top: 5%;">
+        <h1>Ordenes en proceso de aprobacion</h1>
+        <div class="card "  *ngFor="let i of ordenenproceso" >
+          <a href="null">
+          <div class="card-body" style="text-align: center;">
+            <h2 class="card-title" >{{"CM="+i[0].nom2+" || "+i[0].fecha}}</h2>
+            <p class="card-text">{{i[0].producto+"="+i[0].cantidad}}</p>
+            <p class="card-text">{{i[1].producto+"="+i[1].cantidad}}</p>
+            <p class="card-text">{{i[2].producto+"="+i[2].cantidad}}</p>
+            <p class="card-text">{{i[3].producto+"="+i[3].cantidad}}</p>
+            <p class="card-text">{{i[4].producto+"="+i[4].cantidad}}</p>
+            <p class="card-text">....</p>
+            <button mat-fab><mat-icon>Editar</mat-icon></button>
+            <button mat-fab><mat-icon>Validar</mat-icon></button>
+            <button mat-fab><mat-icon>Borrar</mat-icon></button>
+          </div>
+        </a>
+
+        </div>
+
       </div>
+
     </div>
-    <div class="card columns" id="div">
-      <div class="card-body">
-        <h1>Orden en proceso de entrega</h1>
-      </div>
+
     </div>
-    <div class="card columns" id="div">
-      <div class="card-body">
-        <h1>Orden en proceso entregas parciales</h1>
-      </div>
-    </div>
-    <div class="card columns" id="div">
-      <div class="card-body">
-        <h1>Orden en proceso entregas totales</h1>
-      </div>
-    </div>
-  </div>
+
 </div>

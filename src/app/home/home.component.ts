@@ -307,7 +307,7 @@ export class HomeComponent implements OnInit {
           },
         }
 
-      }).update();
+      });
 
   }
   aplicarformula() {
@@ -348,6 +348,8 @@ export class HomeComponent implements OnInit {
   //datos para la  grafica
   chartconsumo() {
 
+    if(this.cm!='inventario')
+    {
     var mes = "";
     if (this.fromDate.month.toString().length > 1)
       mes = this.fromDate.month.toString();
@@ -478,7 +480,11 @@ export class HomeComponent implements OnInit {
       // var dias =;
 
     });
+  }
+  else{
+    if (this.chartcon) this.chartcon.destroy();
 
+  }
   }
 
   close(alertt) {

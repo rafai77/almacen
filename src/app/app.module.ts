@@ -22,6 +22,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AddpedidoComponent } from './addpedido/addpedido.component';
+import { ViewPedidosComponent } from './view-pedidos/view-pedidos.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AddpedidoComponent } from './addpedido/addpedido.component';
     HomeComponent,
     HomeadminComponent,
     LogComponent,
-    AddpedidoComponent
+    AddpedidoComponent,
+    ViewPedidosComponent
   ],
   imports: [
 

@@ -124,8 +124,6 @@ export class AddpedidoComponent implements OnInit {
 
     //const modalRef = this.modalService.open(NgbdModalContent);
     //modalRef.componentInstance.producto = this.porductoS;
-
-
   }
 
   close(alertt) {

@@ -1,5 +1,9 @@
 <app-bar></app-bar>
 
+<ngb-alert *ngIf="mensajeError" type="success" (close)="successMessage = ''">{{ mensajeError }}</ngb-alert>
+
+
+
 <div class="container" id="">
   <div class="row" style="padding-left: 2%;">
     <button ngbTooltip="Recargar Pagina" (click)="obtener()" class="btn btn-primary" value="Send"><svg width="1em"

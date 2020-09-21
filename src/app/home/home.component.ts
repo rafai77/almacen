@@ -10,6 +10,8 @@ import { LogService } from '../services/log.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import {SwPush} from '@angular/service-worker';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 
 
@@ -77,6 +79,11 @@ export class HomeComponent implements OnInit {
   private publicKey= 'BPu9H4WQdDC2Ll6h7KQNrQqOs1LzRL5aXG-oNhr4raRIdwKdxPugDyl6FuYSJzvpwI0M6j35q_obeEbzrriKjzU';
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
+  mensajeError=""
+  private _success = new Subject<string>();
+  alert= [{type: 'danger',
+  message: 'This is a danger alert',}]
+  staticAlertClosed: boolean;
 
 
   constructor( private swpush:SwPush,private calendar: NgbCalendar, public formatter: NgbDateParserFormatter,
@@ -134,18 +141,26 @@ export class HomeComponent implements OnInit {
       this.cm = params.get('cm');
      // this.chartconsumo();
       this.formulaView();
-      this.formulaView();
       this.datosinver();
       this.titulo()
       this.labels();
       this.tipos("ls")
       this.obtener();
 
+      setTimeout(() => this.staticAlertClosed = true, 20000);
+
+    this._success.subscribe(message => this.mensajeError = message);
+    this._success.pipe(
+      debounceTime(5000)
+    ).subscribe(() => this.mensajeError = '');
+
+
     });
 
 
   }
   calcularformula() {
+    this.formulaView();
     var canformula = []//cantidad de formula a apliacar
     //console.log(this.Data)
     for (var i in this.productosf) {
@@ -154,7 +169,6 @@ export class HomeComponent implements OnInit {
           let x = this.Data[j].total
           canformula.push(Math.round(x / this.cantidadesf[i]));
         }
-
       }
     }
     //canformula=canformula.sort();
@@ -164,6 +178,7 @@ export class HomeComponent implements OnInit {
 
 
   Viewformula() {
+    this.formulaView();
     var formula: string = ""
     this.calcularformula()
     for (var i = 0; i < this.productosf.length; i++) {
@@ -174,6 +189,7 @@ export class HomeComponent implements OnInit {
     modalRef.componentInstance.formula = formula
     modalRef.componentInstance.can = this.calcularformula()
   }
+
   formulaView() {
     if (this.cm != 'inventario')
       this.datos.formulaView(this.cm).subscribe((res: any) => {
@@ -295,12 +311,19 @@ export class HomeComponent implements OnInit {
 
   }
   aplicarformula() {
+    if(this.calcularformula()>0)
+    {
+      this.datos.mandarformula(this.cantidadesf, this.productosf, this.cm,this.Data).subscribe((res: any) => {
+        console.log(res);
+      });
+      this.mensajeError="Formula aplicada "
+    }
+    else
+      this.mensajeError="no tiene suficiente producto para la formula"
+    this.changeSuccessMessage();
+    this.obtener();
+    this.formulaView();
 
-   // console.log(this.cantidadesf, this.cantidadesf)
-    this.datos.mandarformula(this.cantidadesf, this.productosf, this.cm,this.Data).subscribe((res: any) => {
-
-      console.log(res);
-    });
   }
 
   obtener() {
@@ -458,7 +481,13 @@ export class HomeComponent implements OnInit {
 
   }
 
+  close(alertt) {
+    this.alert.splice(this.alert.indexOf(alertt), 1);
+  }
 
+  public changeSuccessMessage() {
+    this._success.next(this.mensajeError);
+  }
 
 
   async pushSuscrip()

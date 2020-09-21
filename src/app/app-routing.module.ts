@@ -8,6 +8,7 @@ import {HomeGuard} from './security/home.guard'
 import { HomeadminComponent } from './homeadmin/homeadmin.component';
 import { CommonModule } from '@angular/common';
 import { AddpedidoComponent } from './addpedido/addpedido.component';
+import { ViewPedidosComponent } from './view-pedidos/view-pedidos.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
             {path:'Login',component:LogComponent,canActivate:[LogGuard]},
             {path:'Home/:cm',component:HomeComponent,canActivate:[HomeGuard]},//componente para el home normal
             {path:'pedido/:cm',component:AddpedidoComponent,canActivate:[HomeGuard]},
+            {path:'pedidoview/:cm',component:ViewPedidosComponent,canActivate:[HomeGuard]},
             //{path:'**',component:HomeComponent ,canActivate:[HomeGuard],},
 ];
 @NgModule({

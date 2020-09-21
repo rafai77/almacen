@@ -19,6 +19,8 @@ export class BarComponent implements OnInit {
   invernaderos;
   dropacutal;
   planta;
+  isNavbarCollapsed=true;
+
 
   constructor( private ar: ActivatedRoute,private datos:DatosService,private servicelog:LogService,private rotuer:Router)
   {
@@ -90,7 +92,6 @@ export class BarComponent implements OnInit {
   {
     return this.servicelog.getnombre()
   }
-  isNavbarCollapsed=true;
 
   mandarPedidos()
   {
@@ -99,8 +100,15 @@ export class BarComponent implements OnInit {
       let n = params.get('cm')
        this.rotuer.navigate(['/pedido/'+n]);
     })
+  }
 
-
+  viewPedidos()
+  {
+    this.ar.paramMap.subscribe((params: ParamMap) => {
+      //console.log( params.get('cm'))
+      let n = params.get('cm')
+       this.rotuer.navigate(['/pedidoview/'+n]);
+    })
   }
 
 }

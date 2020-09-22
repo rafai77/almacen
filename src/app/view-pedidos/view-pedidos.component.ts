@@ -5,6 +5,8 @@ import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { DatosService } from '../services/datos.service';
 import { LogService } from '../services/log.service';
+import { NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-view-pedidos',
@@ -15,7 +17,10 @@ export class ViewPedidosComponent implements OnInit {
 
   constructor( public formatter: NgbDateParserFormatter,
     private logiS: LogService, private datos: DatosService, private router: Router,
-    private ar: ActivatedRoute, private modalService: NgbModal) {
+    private ar: ActivatedRoute, private modalService: NgbModal,
+    config: NgbModalConfig,) {
+      config.backdrop = 'static';
+      config.keyboard = false;
     }
 
   cm="";
@@ -92,6 +97,9 @@ export class ViewPedidosComponent implements OnInit {
       this.obtener();
     }
     );
+  }
+  open(content) {
+    this.modalService.open(content);
   }
 
 

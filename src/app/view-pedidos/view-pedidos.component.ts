@@ -53,6 +53,7 @@ export class ViewPedidosComponent implements OnInit {
     this.datos.getpedidos(this.cm).subscribe((res:any)=>
     {
       var preordenenproceso=[]
+      console.log(res);
       preordenenproceso=res.map((i)=>{
         if(i.status=='Revision')
         return i

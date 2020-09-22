@@ -25,6 +25,7 @@ export class ViewPedidosComponent implements OnInit {
   successMessage = '';
   private _success = new Subject<string>();
   ordenenproceso=[]
+  ordenenaprob=[]
 
   ngOnInit(): void {
 
@@ -53,25 +54,45 @@ export class ViewPedidosComponent implements OnInit {
     this.datos.getpedidos(this.cm).subscribe((res:any)=>
     {
       var preordenenproceso=[]
+      var preordenenaprob=[]
       console.log(res);
-      preordenenproceso=res.map((i)=>{
-        if(i.status=='Revision')
-        return i
-      })
-      let tam=preordenenproceso.length/26
-      for (let i=0;i<tam;i++)
-      {
-       console.log((26*i),(i*26)+26)
-       let aux=(preordenenproceso.splice(0,(i*26)+26))
-        this.ordenenproceso.push(aux)
-      }
-      console.log(this.ordenenproceso)
+      //preordenenproceso=res.filter( i =>(i.status=="Revision"))
+      //preordenenaprob=res.filter( i =>(i.status=="Aprobado"))
+      this.ordenenproceso=this.separar(res.filter( i =>(i.status=="Revision")));
+      this.ordenenaprob=this.separar(res.filter( i =>(i.status=="Aprobado")));
+
+
 
 
 
     });
   }
 
+  private separar(list)
+  {
+    let auxl=[]
+    let tam=list.length/26
+    console.log(tam)
+      for (let i=0;i<tam;i++)
+      {
+       console.log(list)
+       let aux=(list.splice(0,26) )
+       auxl.push(aux)
+       aux=[]
+      }
+      return auxl;
+  }
+
+  validar(dat)
+  {
+    this.datos.change(dat,"Aprobado").subscribe((res:any)=>
+    {
+      console.log(res);
+
+      this.obtener();
+    }
+    );
+  }
 
 
 

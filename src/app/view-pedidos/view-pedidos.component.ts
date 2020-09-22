@@ -11,7 +11,8 @@ import { NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-view-pedidos',
   templateUrl: './view-pedidos.component.html',
-  styleUrls: ['./view-pedidos.component.css']
+  styleUrls: ['./view-pedidos.component.css'],
+  providers: [NgbModalConfig, NgbModal]
 })
 export class ViewPedidosComponent implements OnInit {
 
@@ -24,6 +25,7 @@ export class ViewPedidosComponent implements OnInit {
     }
 
   cm="";
+  pedidotem=[]
   alert= [{type: 'danger',
   message: 'This is a danger alert',}]
   staticAlertClosed = false;
@@ -65,11 +67,6 @@ export class ViewPedidosComponent implements OnInit {
       //preordenenaprob=res.filter( i =>(i.status=="Aprobado"))
       this.ordenenproceso=this.separar(res.filter( i =>(i.status=="Revision")));
       this.ordenenaprob=this.separar(res.filter( i =>(i.status=="Aprobado")));
-
-
-
-
-
     });
   }
 
@@ -77,10 +74,10 @@ export class ViewPedidosComponent implements OnInit {
   {
     let auxl=[]
     let tam=list.length/26
-    console.log(tam)
+
       for (let i=0;i<tam;i++)
       {
-       console.log(list)
+
        let aux=(list.splice(0,26) )
        auxl.push(aux)
        aux=[]
@@ -98,7 +95,9 @@ export class ViewPedidosComponent implements OnInit {
     }
     );
   }
-  open(content) {
+  open(content,data) {
+    this.pedidotem=data;
+   // console.log(data);
     this.modalService.open(content);
   }
 

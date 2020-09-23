@@ -34,6 +34,9 @@ export class ViewPedidosComponent implements OnInit {
   ordenenproceso=[]
   ordenenaprob=[]
 
+
+
+
   ngOnInit(): void {
 
     this.ar.paramMap.subscribe((params: ParamMap) => {
@@ -52,8 +55,8 @@ export class ViewPedidosComponent implements OnInit {
     this.alert.splice(this.alert.indexOf(alertt), 1);
   }
 
-  public changeSuccessMessage() {
-    this._success.next(` Datos incompeltos`);
+  public changeSuccessMessage(x) {
+    this._success.next(` Datos incompeltos ${x}`);
   }
 
   obtener()
@@ -62,7 +65,7 @@ export class ViewPedidosComponent implements OnInit {
     {
       var preordenenproceso=[]
       var preordenenaprob=[]
-      console.log(res);
+      //console.log(res);
       //preordenenproceso=res.filter( i =>(i.status=="Revision"))
       //preordenenaprob=res.filter( i =>(i.status=="Aprobado"))
       this.ordenenproceso=this.separar(res.filter( i =>(i.status=="Revision")));
@@ -95,7 +98,9 @@ export class ViewPedidosComponent implements OnInit {
     }
     );
   }
-  open(content,data) {
+  open(content,data)
+  {
+    this.pedidotem=[]
     this.pedidotem=data;
    // console.log(data);
     this.modalService.open(content);
@@ -103,10 +108,44 @@ export class ViewPedidosComponent implements OnInit {
 
   productollego(form,list)
   {
-    console.log(list)
-    console.log(form._directives)
+
+    let status= "EntregaP"
+    let datosenviar=[]
+    let data_p_c=[]
+    let data_erro=[]
+
     for (let i in form._directives)
-      console.log(form._directives[i]["value"])
+    if(form._directives[i]["value"])
+      datosenviar.push([form._directives[i]["name"],parseFloat(form._directives[i]["value"])])
+    else
+      datosenviar.push([form._directives[i]["name"],0])
+
+
+    for (let i in  this.pedidotem)
+    {
+       if(this.pedidotem[i]["producto"] == datosenviar[i][0])
+        if(datosenviar[i][1]<= this.pedidotem[i]["cantidad"])
+          data_p_c.push([datosenviar[i][0],datosenviar[i][1]])
+        else
+        {
+
+         data_erro.push([datosenviar[i][0]])
+
+        }
+
+    }
+
+
+    if(data_erro.length)
+    {
+      let x="";
+      for (var i in data_erro)
+        x+=data_erro[i]+", "
+      this.changeSuccessMessage(x)
+
+    }
+
+    else
       this.modalService.dismissAll()
 
   }

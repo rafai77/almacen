@@ -107,6 +107,7 @@ export class AddpedidoComponent implements OnInit {
       }
     );
   }
+
   mandar(form)
   {
     this.porductoS=form._directives.map(item=> ({"value":item.value}))

@@ -12,19 +12,18 @@
     <form #frmLogin='ngForm' (ngSubmit)='productollego(frmLogin)' class="login-container">
       <div class="column" id="divmodal" class=" modal-body">
         <div *ngFor="let i of pedidotem">
+
           <li>{{i.producto }}
             <div class="input-group input-group-sm mb-3">
-                <input class="form-control form-control-sm " type="text" name="Total ={{i.producto}}" ngModel required>
-              <a>
-              <p style="color: blue;">{{"Cantidad pedida = "+i.cantidad}}</p>
-              <p style="color: brown;">{{ "Cantidad pedida = "+i.cantidad_entrgada}}</p>
-              </a>
+                <input class="form-control form-control-sm"  type="text" name="Total ={{i.producto}}" ngModel required>
             </div>
+            <p style="color: blue;">{{"Cantidad pedida = "+i.cantidad}}</p>
+              <p style="color: brown;">{{ "Cantidad pedida = "+i.cantidad_entrgada}}</p>
           </li>
-        </div>
-        <div class="modal-footer">
-          <button class="  btn btn-success" value="Send" type="submit">Actualizar</button>
-        </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button (click)="d('Cross click')"  class="  btn btn-success" value="Send" type="submit">Actualizar</button>
       </div>
     </form>
 
@@ -35,11 +34,11 @@
 <div class="container">
   <div class="row " id="">
 
-    <div class="card column" id="div">
+    <div id="carddi" class=" carddi card column" id="div">
 
-      <div class="card-body" style="padding-top: 5%;">
+      <div   class="card-body" style="padding-top: 5%;">
         <h1 style="color: midnightblue;">Ordenes en proceso de aprobacion</h1>
-        <div class="card " *ngFor="let i of ordenenproceso">
+        <div  class="card carddi2 " *ngFor="let i of ordenenproceso">
 
           <div class="card-body" style="text-align: center;">
             <h2 class="card-title">{{"CM="+i[0].nom2+" || "+i[0].fecha}}</h2>
@@ -82,10 +81,10 @@
 
     </div>
 
-    <div class="card " id="div">
+    <div class="card carddi " id="div">
       <div class="card-body" style="padding-top: 5%;">
         <h1 style="color: midnightblue;">Ordenes Aprobadas</h1>
-        <div class="card " *ngFor="let i of ordenenaprob">
+        <div class="card carddi3" *ngFor="let i of ordenenaprob">
           <div class="card-body" style="text-align: center;">
             <h2 class="card-title">{{"CM="+i[0].nom2+" || "+i[0].fecha}}</h2>
             <p class="card-text">{{i[0].producto+"="+i[0].cantidad}}</p>
@@ -95,7 +94,7 @@
             <p class="card-text">{{i[4].producto+"="+i[4].cantidad}}</p>
             <p class="card-text">ver mas...</p>
             <div>
-              <button ngbTooltip="Actualizar estatus" class="btn btn-secundary" (click)="open(content,i)"
+              <button ngbTooltip="Actualizar estatus" class="btn btn-success" (click)="open(content,i)"
                 value="Send"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd"

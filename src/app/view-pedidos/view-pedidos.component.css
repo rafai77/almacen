@@ -21,6 +21,38 @@
   }
 }
 
+.carddi
+{
+  border-radius: 25px;
+  border-color: #4b0082;
+}
+
+
+
+.carddi2
+{
+  border-radius: 25px;
+  border-color: blue;
+  margin-top: 2.5%;
+
+}
+
+.carddi3
+{
+  border-radius: 25px;
+  border-color: #C7A32C;
+  margin-top: 2.5%;
+
+}
+
+@media (min-width:34em) {
+  .card-deck > .card
+  {
+      width: 29%;
+      flex-wrap: wrap;
+      flex: initial;
+  }
+}
 
 
 ngb-popover-window {

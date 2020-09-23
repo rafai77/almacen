@@ -101,9 +101,13 @@ export class ViewPedidosComponent implements OnInit {
     this.modalService.open(content);
   }
 
-  productollego(form)
+  productollego(form,list)
   {
-    console.log(form)
+    console.log(list)
+    console.log(form._directives)
+    for (let i in form._directives)
+      console.log(form._directives[i]["value"])
+      this.modalService.dismissAll()
 
   }
 

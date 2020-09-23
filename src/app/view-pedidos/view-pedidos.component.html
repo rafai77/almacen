@@ -2,21 +2,24 @@
 
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Listado del pedido</h4>
+    <h1 style="color: midnightblue;" class="modal-title" id="modal-basic-title">Listado del pedido</h1>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div id="div" class="modal-body">
+  <div class="row justify-content-md-center">
+  <div class="column" id="divmodal" class=" modal-body">
     <div  *ngFor="let i of pedidotem">
       <li>{{i.producto }}<div class="input-group input-group-sm mb-3">
           <p>
             <input  class="form-control form-control-sm " type="text"
-              name="Total ={{i.producto}}" ngModel required><p>{{i.cantidad}}</p>
+              name="Total ={{i.producto}}" ngModel required><p style="color: blue;">{{"Cantidad pedida = "+i.cantidad}}</p>
+              <a style="color: brown;">{{"Cantidad pedida = "+i.cantidad_entrgada}}</a>
           </p>
         </div>
       </li>
     </div>
+  </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
@@ -29,7 +32,7 @@
     <div class="card column" id="div">
 
       <div class="card-body" style="padding-top: 5%;">
-        <h1>Ordenes en proceso de aprobacion</h1>
+        <h1 style="color: midnightblue;">Ordenes en proceso de aprobacion</h1>
         <div class="card " *ngFor="let i of ordenenproceso">
 
           <div class="card-body" style="text-align: center;">
@@ -74,7 +77,7 @@
 
     <div class="card " id="div">
       <div class="card-body" style="padding-top: 5%;">
-        <h1>Ordenes Aprobadas</h1>
+        <h1 style="color: midnightblue;">Ordenes Aprobadas</h1>
         <div class="card " *ngFor="let i of ordenenaprob">
           <div class="card-body" style="text-align: center;">
             <h2 class="card-title">{{"CM="+i[0].nom2+" || "+i[0].fecha}}</h2>

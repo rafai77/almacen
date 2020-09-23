@@ -101,6 +101,11 @@ export class ViewPedidosComponent implements OnInit {
     this.modalService.open(content);
   }
 
+  productollego(form)
+  {
+    console.log(form)
+
+  }
 
 
 

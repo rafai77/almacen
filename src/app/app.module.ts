@@ -24,6 +24,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AddpedidoComponent } from './addpedido/addpedido.component';
 import { ViewPedidosComponent } from './view-pedidos/view-pedidos.component';
 import { ViewPedidosAdminComponent } from './view-pedidos-admin/view-pedidos-admin.component';
+import { TraspasosComponent } from './traspasos/traspasos.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ViewPedidosAdminComponent } from './view-pedidos-admin/view-pedidos-adm
     LogComponent,
     AddpedidoComponent,
     ViewPedidosComponent,
-    ViewPedidosAdminComponent
+    ViewPedidosAdminComponent,
+    TraspasosComponent
   ],
   imports: [
 

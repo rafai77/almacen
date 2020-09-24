@@ -23,7 +23,7 @@
             </div>
             <p style="color: blue;">{{"Cantidad pedida = "+i.cantidad}}</p>
               <p style="color: brown;">{{ "Cantidad Entregada = "+i.cantidad_entrgada}}</p>
-              <p><ngb-progressbar type="success" textType="white" [value]="(i.cantidad_entrgada*100)/i.cantidad" [showValue]="true"></ngb-progressbar></p>
+              <p><ngb-progressbar  [striped]="true" [animated]="true" type="success" textType="white" value="{{(i.cantidad_entrgada*100)/i.cantidad}}" [showValue]="true"></ngb-progressbar></p>
           </li>
       </div>
       </div>
@@ -108,7 +108,7 @@
     <div class="card carddi " id="div">
       <div class="card-body" style="padding-top: 5%;">
         <h1 style="color: midnightblue;">En proceso de entrega</h1>
-        <div class="card carddi4" *ngFor="let i of ordenproceso">
+        <div class="card carddi4" *ngFor="let i of ordenproceso; let h=index">
           <div class="card-body" style="text-align: center;">
             <h2  style="color: midnightblue;" class="card-title">{{"CM="+i[0].nom2+" || "+i[0].fecha}}</h2>
             <p class="card-text">{{i[0].producto+"="+i[0].cantidad}}</p>
@@ -117,14 +117,17 @@
             <p class="card-text">{{i[3].producto+"="+i[3].cantidad}}</p>
             <p class="card-text">{{i[4].producto+"="+i[4].cantidad}}</p>
             <p class="card-text">ver mas...</p>
-
+            <p><ngb-progressbar  type="success" textType="white" value="{{totales[0][h]}}" [showValue]="true"></ngb-progressbar></p>
+            {{totales[0][h]}}
             <div>
+
               <button ngbTooltip="Actualizar estatus" class="btn btn-info" (click)="open(content,i)"
                 value="Send"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd"
                     d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                 </svg></button>
+
             </div>
           </div>
         </div>

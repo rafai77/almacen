@@ -34,6 +34,7 @@ export class ViewPedidosComponent implements OnInit {
   ordenenproceso=[]
   ordenenaprob=[]
   ordenproceso=[]
+  totales=[]
 
 
 
@@ -64,16 +65,28 @@ export class ViewPedidosComponent implements OnInit {
   {
     this.datos.getpedidos(this.cm).subscribe((res:any)=>
     {
+      this.totales=[];
       var preordenenproceso=[]
       var preordenenaprob=[]
       console.log(res);
-      //preordenenproceso=res.filter( i =>(i.status=="Revision"))
-      //preordenenaprob=res.filter( i =>(i.status=="Aprobado"))}
-
-
       this.ordenenproceso=this.separar(res.filter( i =>(i.status=="Revision")));
       this.ordenenaprob=this.separar(res.filter( i =>(i.status=="Aprobado")));
       this.ordenproceso=this.separar(res.filter( i =>(i.status=="EntregaP")));
+      let s=[]
+      for (let i in this.ordenproceso)
+      {
+       let aux=0
+       let aux2=0
+       for(let j in this.ordenproceso[i])
+       {
+         aux+= this.ordenproceso[i][j]["cantidad"]
+         aux2+= this.ordenproceso[i][j]["cantidad_entrgada"]
+       }
+       s.push(aux2*100 / aux)
+      }
+      console.log(s)
+      this.totales.push(s)
+
     });
   }
 
@@ -152,6 +165,7 @@ export class ViewPedidosComponent implements OnInit {
 
       });
       this.modalService.dismissAll()
+      this.obtener()
       this.obtener()
     }
 

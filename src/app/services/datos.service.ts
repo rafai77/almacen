@@ -134,6 +134,20 @@ export class DatosService {
     return this.http.post(`${this.Dominio}/changestatus`,body,{headers:headers});
 
   }
+  //actualizarPedidos
+
+  actualizarP(datos,status):Observable<any>
+  {
+    var headers={
+      'vefificador':this.servicelog.tkget()
+    }
+    var body={
+      info:datos,
+      status:status
+    }
+    return this.http.post(`${this.Dominio}/actualizarPedidos`,body,{headers:headers});
+
+  }
 
 
 }

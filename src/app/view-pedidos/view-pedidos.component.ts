@@ -69,11 +69,7 @@ export class ViewPedidosComponent implements OnInit {
       console.log(res);
       //preordenenproceso=res.filter( i =>(i.status=="Revision"))
       //preordenenaprob=res.filter( i =>(i.status=="Aprobado"))}
-      console.log(res.filter( i =>(i.status=="Revision")))
 
-      console.log(res.filter( i =>(i.status=="Aprobado")))
-
-      console.log(res.filter( i =>(i.status=="EntregaP")))
 
       this.ordenenproceso=this.separar(res.filter( i =>(i.status=="Revision")));
       this.ordenenaprob=this.separar(res.filter( i =>(i.status=="Aprobado")));
@@ -129,12 +125,13 @@ export class ViewPedidosComponent implements OnInit {
       datosenviar.push([form._directives[i]["name"],0])
 
 
-    console.log(this.pedidotem)
+    //console.log(this.pedidotem)
     for (let i in  this.pedidotem)
     {
+      console.log((datosenviar[i][1]+this.pedidotem[i]["cantidad_entrgada"]))
        if(this.pedidotem[i]["producto"] == datosenviar[i][0])
-        if(datosenviar[i][1]<= this.pedidotem[i]["cantidad"])
-          data_p_c.push([this.pedidotem[i]["id_producto"],datosenviar[i][1],this.pedidotem[i]["id_pedido"]])
+        if((datosenviar[i][1]+this.pedidotem[i]["cantidad_entrgada"])<= this.pedidotem[i]["cantidad"])
+          data_p_c.push([this.pedidotem[i]["id_producto"],(datosenviar[i][1]+this.pedidotem[i]["cantidad_entrgada"]),this.pedidotem[i]["id_pedido"]])
         else
          data_erro.push([datosenviar[i][0]])
     }

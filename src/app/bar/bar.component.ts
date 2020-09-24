@@ -111,4 +111,9 @@ export class BarComponent implements OnInit {
     })
   }
 
+  traspasos()
+  {
+    this.rotuer.navigate(['traspaso']);
+  }
+
 }

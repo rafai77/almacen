@@ -166,7 +166,6 @@ export class ViewPedidosComponent implements OnInit {
       });
       this.modalService.dismissAll()
       this.obtener()
-      this.obtener()
     }
 
   }

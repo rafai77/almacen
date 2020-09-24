@@ -149,5 +149,15 @@ export class DatosService {
 
   }
 
+  getpedidosAdmin(datos):Observable<any>
+  {
+      var headers={
+      'vefificador':this.servicelog.tkget()
+    }
+    var body={
+      cm:datos
+    }
+    return this.http.post(`${this.Dominio}/viewPedidosadmin`,body,{headers:headers});
+  }
 
 }

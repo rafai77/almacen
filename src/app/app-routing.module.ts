@@ -9,6 +9,8 @@ import { HomeadminComponent } from './homeadmin/homeadmin.component';
 import { CommonModule } from '@angular/common';
 import { AddpedidoComponent } from './addpedido/addpedido.component';
 import { ViewPedidosComponent } from './view-pedidos/view-pedidos.component';
+import { ViewPedidosAdminComponent } from './view-pedidos-admin/view-pedidos-admin.component';
+
 
 
 const routes: Routes = [
@@ -18,6 +20,7 @@ const routes: Routes = [
             {path:'Home/:cm',component:HomeComponent,canActivate:[HomeGuard]},//componente para el home normal
             {path:'pedido/:cm',component:AddpedidoComponent,canActivate:[HomeGuard]},
             {path:'pedidoview/:cm',component:ViewPedidosComponent,canActivate:[HomeGuard]},
+            {path:'ventas',component:ViewPedidosAdminComponent,canActivate:[HomeGuard]},
             //{path:'**',component:HomeComponent ,canActivate:[HomeGuard],},
 ];
 @NgModule({

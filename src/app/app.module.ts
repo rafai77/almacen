@@ -23,6 +23,7 @@ import { environment } from '../environments/environment';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AddpedidoComponent } from './addpedido/addpedido.component';
 import { ViewPedidosComponent } from './view-pedidos/view-pedidos.component';
+import { ViewPedidosAdminComponent } from './view-pedidos-admin/view-pedidos-admin.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ViewPedidosComponent } from './view-pedidos/view-pedidos.component';
     HomeadminComponent,
     LogComponent,
     AddpedidoComponent,
-    ViewPedidosComponent
+    ViewPedidosComponent,
+    ViewPedidosAdminComponent
   ],
   imports: [
 

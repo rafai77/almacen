@@ -14,7 +14,7 @@
   </div>
 
 
-  <div class="col" id="div1">
+  <div class="col div1" id="div1">
     <h1  style="color:{{Titulo2[0].color}}">{{Titulo2[0].nombre}}</h1>
     <table mat-table cdkColumnDef="customWidthClass" [dataSource]="dataSource2" matSort class="mat-elevation-z8">
       <ng-container *ngFor="let dat of displayedColumns" matColumnDef={{dat}}>
@@ -27,4 +27,27 @@
     </table>
   </div>
 
+
+</div>
+<div class="container">
+  <div class="card" id="divtras">
+    <img src="\assets\Cimarron.png" class="card-img-top" alt="...">
+    <div class="card" id="div2">
+      <div class="card-body">
+        <h1>Productos</h1>
+        <form #frmLogin='ngForm' class="login-container">
+          <div *ngFor="let i of Data">
+            <li>{{i.producto}}<div class="input-group input-group-sm mb-3">
+                <p>
+                  <input  class="form-control form-control-sm " type="text"
+                    name="{{i.producto}}" ngModel required>
+                </p>
+              </div>
+            </li>
+          </div>
+          <button class="  btn btn-success" value="Send" type="submit">Mandar</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

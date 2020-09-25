@@ -30,6 +30,10 @@ export class TraspasosComponent implements OnInit {
   private tipo: string = "ls"
   cm: string = "inventario"
   cm2: string = "cm1"
+  cms=[]
+  Titulo=[]
+
+  Titulo2=[]
 
   constructor( private swpush:SwPush,private calendar: NgbCalendar, public formatter: NgbDateParserFormatter,
     private logiS: LogService, private datos: DatosService, private router: Router,
@@ -45,15 +49,17 @@ export class TraspasosComponent implements OnInit {
   ngOnInit(): void {
     this.origen();
     this.destino();
+
   }
 
   origen()
   {
-
+    this.datosinver()
     var body = {
       tabla: this.cm,
       tipo: this.tipo
     }
+    this.titulo()
 
     this.datos.datos(body).subscribe((res: Datos[]) => {
 
@@ -72,13 +78,73 @@ export class TraspasosComponent implements OnInit {
       tipo: this.tipo
     }
 
+    this.titulo2
     this.datos.datos(body).subscribe((res: Datos[]) => {
+
+    this.datosinver()
 
       //console.log(res);
       this.dataSource2.data = res
 
     })
+  }
 
+  datosinver() {
+    this.datos.cms().subscribe((res: any) => {
+      let nombres
+      let tablas
+      nombres = res.map(item => item.nombre)
+      tablas = res.map(item => item.nom2)
+      let p = res.map(item => item.planta)
+      for (var i in nombres) {
+        let c = ""
+        if (p[i] == 'Pimiento')
+          c = "#0CAC1F"
+        else
+          c = "#FF4933"
+        this.cms.push({
+          "nombre": nombres[i],
+          "nom2": tablas[i],
+          "color": c
+        })
+      }
+
+      this.cms.push({
+        "nombre": "Alamacen General",
+        "nom2": "inventario",
+        "color": "#000"
+      })
+      this.titulo()
+      this.titulo2()
+
+
+    });
+  }
+  titulo() {
+
+    this.Titulo = []
+    for (var i in this.cms) {
+      if (this.cms[i].nom2 == this.cm)
+        this.Titulo.push({
+          "nombre": this.cms[i].nombre,
+          "color": this.cms[i].color
+        });
+
+    }
 
   }
+  titulo2() {
+
+    this.Titulo2 = []
+    for (var i in this.cms) {
+      if (this.cms[i].nom2 == this.cm2)
+        this.Titulo2.push({
+          "nombre": this.cms[i].nombre,
+          "color": this.cms[i].color
+        });
+
+    }
+
+  }
+
 }

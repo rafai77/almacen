@@ -1,6 +1,7 @@
 <app-bar></app-bar>
 <div class="row">
   <div class="col" id="div1">
+    <h1  style="color:{{Titulo[0].color}}">{{Titulo[0].nombre}}</h1>
     <table mat-table cdkColumnDef="customWidthClass" [dataSource]="dataSource" matSort class="mat-elevation-z8">
       <ng-container *ngFor="let dat of displayedColumns" matColumnDef={{dat}}>
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{dat}} </th>
@@ -14,6 +15,7 @@
 
 
   <div class="col" id="div1">
+    <h1  style="color:{{Titulo2[0].color}}">{{Titulo2[0].nombre}}</h1>
     <table mat-table cdkColumnDef="customWidthClass" [dataSource]="dataSource2" matSort class="mat-elevation-z8">
       <ng-container *ngFor="let dat of displayedColumns" matColumnDef={{dat}}>
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{dat}} </th>

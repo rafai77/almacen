@@ -310,6 +310,7 @@ export class HomeComponent implements OnInit {
       });
 
   }
+
   aplicarformula() {
     if(this.calcularformula()>0)
     {

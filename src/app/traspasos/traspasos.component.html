@@ -27,27 +27,33 @@
     </table>
   </div>
 
+  <div class="col">
+    <div class="card" id="divtras">
+      <img src="\assets\Cimarron.png" class="card-img-top" alt="...">
+      <div class="card" id="div2">
+        <div class="card-body">
+          <h1>Productos a pasar de {{Titulo[0].nombre}} => {{Titulo2[0].nombre}} </h1>
+          <form #frmLogin='ngForm' class="login-container">
+            <div class="datosenviarform" id="datosenviarform">
+            <div *ngFor="let i of Data">
+              <li>{{i.producto}}<div class="input-group input-group-sm mb-3">
+                  <p>
+                    <input  class="form-control form-control-sm " type="text"
+                      name="{{i.producto}}" ngModel required>
+                  </p>
+                </div>
 
-</div>
-<div class="container">
-  <div class="card" id="divtras">
-    <img src="\assets\Cimarron.png" class="card-img-top" alt="...">
-    <div class="card" id="div2">
-      <div class="card-body">
-        <h1>Productos</h1>
-        <form #frmLogin='ngForm' class="login-container">
-          <div *ngFor="let i of Data">
-            <li>{{i.producto}}<div class="input-group input-group-sm mb-3">
-                <p>
-                  <input  class="form-control form-control-sm " type="text"
-                    name="{{i.producto}}" ngModel required>
-                </p>
-              </div>
-            </li>
-          </div>
-          <button class="  btn btn-success" value="Send" type="submit">Mandar</button>
-        </form>
+
+              </li>
+            </div>
+            </div>
+            <button class="  btn btn-success" value="Send" type="submit">Mandar</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
+
+
 </div>
+

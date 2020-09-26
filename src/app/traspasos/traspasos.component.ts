@@ -64,7 +64,6 @@ export class TraspasosComponent implements OnInit {
     this.datos.datos(body).subscribe((res: Datos[]) => {
 
       this.Data = res
-      console.log(res);
       this.dataSource.data = res
 
     })
@@ -148,4 +147,8 @@ export class TraspasosComponent implements OnInit {
 
   }
 
+  mandar(form)
+  {
+
+  }
 }

@@ -160,4 +160,15 @@ export class DatosService {
     return this.http.post(`${this.Dominio}/viewPedidosadmin`,body,{headers:headers});
   }
 
+  settraspaso(datos)
+  {
+    var headers={
+      'vefificador':this.servicelog.tkget()
+    }
+    var body={
+      cm:datos
+    }
+    return this.http.post(`${this.Dominio}/traspasos`,body,{headers:headers});
+  }
+
 }

@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SwPush } from '@angular/service-worker';
 import { NgbCalendar, NgbDate, NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTypeaheadWindow } from '@ng-bootstrap/ng-bootstrap/typeahead/typeahead-window';
 import { Subject } from 'rxjs';
 import { Datos } from '../model/Datos';
 import { DatosService } from '../services/datos.service';
@@ -149,6 +150,7 @@ export class TraspasosComponent implements OnInit {
 
   mandar(form)
   {
-
+    console.log(form._directives)
+    //this.datos.settraspaso()
   }
 }

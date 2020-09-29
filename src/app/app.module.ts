@@ -25,6 +25,7 @@ import { AddpedidoComponent } from './addpedido/addpedido.component';
 import { ViewPedidosComponent } from './view-pedidos/view-pedidos.component';
 import { ViewPedidosAdminComponent } from './view-pedidos-admin/view-pedidos-admin.component';
 import { TraspasosComponent } from './traspasos/traspasos.component';
+import { ViewTraspasosComponent } from './view-traspasos/view-traspasos.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { TraspasosComponent } from './traspasos/traspasos.component';
     AddpedidoComponent,
     ViewPedidosComponent,
     ViewPedidosAdminComponent,
-    TraspasosComponent
+    TraspasosComponent,
+    ViewTraspasosComponent
   ],
   imports: [
 

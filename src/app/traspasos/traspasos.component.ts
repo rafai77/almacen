@@ -151,14 +151,19 @@ export class TraspasosComponent implements OnInit {
   mandar(form)
   {
     let c=[]
+    let newv=[] //nuevos valores
     for (let i in form._directives)
+    {
       if((this.Data[i].total-form._directives[i].value) >= 0)
         c.push({nombre:this.Data[i].producto,valor:(this.Data[i].total-form._directives[i].value)})
+      newv.push({nombre:this.Data[i].producto,valor:form._directives[i].value})
+    }
      console.log(c)
 
-    this.datos.settraspaso(c,this.Titulo[0].nombre,this.Titulo2[0].nombre).subscribe((res:any)=>
+    this.datos.settraspaso(c,this.Titulo[0].nombre,this.Titulo2[0].nombre,newv).subscribe((res:any)=>
     {
       console.log(res)
     });
   }
+
 }

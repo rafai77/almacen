@@ -160,15 +160,16 @@ export class DatosService {
     return this.http.post(`${this.Dominio}/viewPedidosadmin`,body,{headers:headers});
   }
 
-  settraspaso(datos,origen,destino)
+  settraspaso(datos,origen,destino,datos2)
   {
     var headers={
       'vefificador':this.servicelog.tkget()
     }
     var body={
-      datos1:datos,
+      nuevos:datos,
       origen:origen,
-      destino:destino
+      destino:destino,
+      prestamo:datos2
     }
     return this.http.post(`${this.Dominio}/traspasos`,body,{headers:headers});
   }

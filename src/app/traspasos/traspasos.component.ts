@@ -150,7 +150,14 @@ export class TraspasosComponent implements OnInit {
 
   mandar(form)
   {
-    console.log(form._directives)
+    let c=[]
+    for (let i in form._directives)
+     {
+       console.log(form._directives[i])
+       console.log(this.Data[i])
+       if((this.Data[i]-form._directives[i]) >= 0)
+        c.push({nombre:this.Data[i].producto,valor:(this.Data[i]-form._directives[i])})
+     }
     //this.datos.settraspaso()
   }
 }

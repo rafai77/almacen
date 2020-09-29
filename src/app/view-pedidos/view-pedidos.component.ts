@@ -144,7 +144,7 @@ export class ViewPedidosComponent implements OnInit {
       console.log((datosenviar[i][1]+this.pedidotem[i]["cantidad_entrgada"]))
        if(this.pedidotem[i]["producto"] == datosenviar[i][0])
         if((datosenviar[i][1]+this.pedidotem[i]["cantidad_entrgada"])<= this.pedidotem[i]["cantidad"])
-          data_p_c.push([this.pedidotem[i]["id_producto"],(datosenviar[i][1]+this.pedidotem[i]["cantidad_entrgada"]),this.pedidotem[i]["id_pedido"]])
+          data_p_c.push([this.pedidotem[i]["id_producto"],(datosenviar[i][1]),this.pedidotem[i]["id_pedido"]])
         else
          data_erro.push([datosenviar[i][0]])
     }

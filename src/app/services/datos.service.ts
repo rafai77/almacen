@@ -173,4 +173,15 @@ export class DatosService {
     return this.http.post(`${this.Dominio}/traspasos`,body,{headers:headers});
   }
 
+  gettraspaso(origen)
+  {
+    var headers={
+      'vefificador':this.servicelog.tkget()
+    }
+    var body={
+      origen:origen,
+    }
+    return this.http.post(`${this.Dominio}/traspasosview`,body,{headers:headers});
+  }
+
 }

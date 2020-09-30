@@ -12,6 +12,7 @@ import { ViewPedidosComponent } from './view-pedidos/view-pedidos.component';
 import { ViewPedidosAdminComponent } from './view-pedidos-admin/view-pedidos-admin.component';
 
 import { TraspasosComponent } from './traspasos/traspasos.component';
+import { ViewTraspasosComponent } from './view-traspasos/view-traspasos.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,8 @@ const routes: Routes = [
             {path:'pedidoview/:cm',component:ViewPedidosComponent,canActivate:[HomeGuard]},
             {path:'ventas',component:ViewPedidosAdminComponent,canActivate:[HomeGuard]},
             {path:'traspaso',component:TraspasosComponent,canActivate:[HomeGuard]},
+            {path:'traspasoview',component:ViewTraspasosComponent,canActivate:[HomeGuard]},
+
             //{path:'**',component:HomeComponent ,canActivate:[HomeGuard],},
 ];
 @NgModule({

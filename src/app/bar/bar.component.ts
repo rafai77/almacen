@@ -115,5 +115,8 @@ export class BarComponent implements OnInit {
   {
     this.rotuer.navigate(['traspaso']);
   }
+  viewtraspasos()
+  {
+    this.rotuer.navigate(['traspasoview']);  }
 
 }

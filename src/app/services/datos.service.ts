@@ -52,7 +52,16 @@ export class DatosService {
     return this.http.post(`${this.Dominio}/cm-inver`,body,{headers:headers});
   }
 
-
+  cms2():Observable<any>
+  {
+    var headers={
+      'vefificador':this.servicelog.tkget()
+    }
+    var body={
+      'id':1
+    }
+    return this.http.post(`${this.Dominio}/cm-inver`,body,{headers:headers});
+  }
   formulaView(cm)
   {
     var headers={

@@ -30,9 +30,13 @@ export class TraspasosComponent implements OnInit {
   Data: Datos[]
   private tipo: string = "ls"
   cm: string = "inventario"
-  cm2: string = "cm1"
+  cm2:string="cm1"
+  cms2=[]
+  cms3=[]
   cms=[]
   Titulo=[]
+  dropacutal;
+  dropacutal2;
 
   Titulo2=[]
 
@@ -48,6 +52,8 @@ export class TraspasosComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.datosdrop();
+    this.datosdrop2();
     this.origen();
     this.destino();
 
@@ -55,16 +61,17 @@ export class TraspasosComponent implements OnInit {
 
   origen()
   {
-    this.datosinver()
+
     var body = {
       tabla: this.cm,
       tipo: this.tipo
     }
-    this.titulo()
+
 
     this.datos.datos(body).subscribe((res: Datos[]) => {
+      this.titulo()
+      this.datosinver()
 
-      this.Data = res
       this.dataSource.data = res
 
     })
@@ -79,12 +86,13 @@ export class TraspasosComponent implements OnInit {
       tipo: this.tipo
     }
 
-    this.titulo2
     this.datos.datos(body).subscribe((res: Datos[]) => {
+    this.titulo2
 
-    this.datosinver()
+    this.datosinver2()
 
       //console.log(res);
+      this.Data = res
       this.dataSource2.data = res
 
     })
@@ -121,6 +129,40 @@ export class TraspasosComponent implements OnInit {
 
     });
   }
+
+
+  datosinver2() {
+    this.datos.cms2().subscribe((res: any) => {
+      let nombres
+      let tablas
+      nombres = res.map(item => item.nombre)
+      tablas = res.map(item => item.nom2)
+      let p = res.map(item => item.planta)
+      for (var i in nombres) {
+        let c = ""
+        if (p[i] == 'Pimiento')
+          c = "#0CAC1F"
+        else
+          c = "#FF4933"
+        this.cms.push({
+          "nombre": nombres[i],
+          "nom2": tablas[i],
+          "color": c
+        })
+      }
+
+      this.cms.push({
+        "nombre": "Alamacen General",
+        "nom2": "inventario",
+        "color": "#000"
+      })
+      this.titulo()
+      this.titulo2()
+
+
+    });
+  }
+
   titulo() {
 
     this.Titulo = []
@@ -159,10 +201,91 @@ export class TraspasosComponent implements OnInit {
     }
      console.log(c)
 
-    this.datos.settraspaso(this.Titulo[0].nombre,this.Titulo2[0].nombre,newv).subscribe((res:any)=>
+    this.datos.settraspaso(this.Titulo2[0].nombre,this.Titulo[0].nombre,newv).subscribe((res:any)=>
     {
       console.log(res)
+      this.router.navigate(['/traspasoview/']);
     });
   }
+
+  pos()// posicion del drop para sacar lo invernaderos
+  {
+    for (var i in this.cms2)
+      if(this.cms2[i].nombre==this.dropacutal)
+        return i
+
+    return -1
+  }
+  datosdrop()
+  {
+    this.datos.cms2().subscribe((res:any)=>
+      {
+        let nombres
+        let tablas
+        //console.log(res)
+        nombres=res.map(item=> item.nombre)
+        tablas=res.map(item=> item.nom2)
+        for (var i in nombres)
+         this.cms2.push({
+           "nombre": nombres[i],
+            "nom2": tablas[i]
+         })
+         this.pos()
+
+        //console.log(this.invernaderos);
+      })
+
+  }
+
+  pos2()// posicion del drop para sacar lo invernaderos
+  {
+    for (var i in this.cms3)
+      if(this.cms3[i].nombre==this.dropacutal2)
+        return i
+
+    return -1
+  }
+  datosdrop2()
+  {
+    this.datos.cms().subscribe((res:any)=>
+      {
+        console.log(res)
+        let nombres
+        let tablas
+        //console.log(res)
+        nombres=res.map(item=> item.nombre)
+        tablas=res.map(item=> item.nom2)
+        for (var i in nombres)
+         this.cms3.push({
+           "nombre": nombres[i],
+            "nom2": tablas[i]
+         })
+         this.pos2()
+
+        //console.log(this.invernaderos);
+      })
+
+  }
+
+  changeAction(n1,n)
+  {
+
+    console.log(n1,n)
+    this.cm=n;
+    this.origen()
+   //this.dropacutal=n1
+
+
+  }
+
+  changeAction2(n1,n)
+  {
+    this.cm2=n;
+    this.destino();
+   //this.dropacutal=n1
+
+
+  }
+
 
 }

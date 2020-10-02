@@ -1,8 +1,21 @@
 <app-bar></app-bar>
 <div class="row">
-  <div class="col" id="div1">
-    <h1  style="color:{{Titulo[0].color}}">{{Titulo[0].nombre}}</h1>
-    <table mat-table cdkColumnDef="customWidthClass" [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+
+  <div class="col div1" id="div1">
+    <h1  style="color:{{Titulo2[0].color}}">{{Titulo2[0].nombre}} (Origen)</h1>
+    <div >
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Cuartos de Maquinas</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+
+          <button ngbDropdownItem (click)="changeAction2(dat['nombre'],dat['nom2'])"
+            *ngFor="let dat of cms2">{{dat['nombre']}}</button>
+
+        </div>
+      </div>
+    </div>
+    <table mat-table cdkColumnDef="customWidthClass" [dataSource]="dataSource2" matSort class="mat-elevation-z8">
       <ng-container *ngFor="let dat of displayedColumns" matColumnDef={{dat}}>
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{dat}} </th>
         <td style="width:150px" [ngClass]="'customWidthClass'" mat-cell *matCellDef="let element">
@@ -13,10 +26,21 @@
     </table>
   </div>
 
+  <div class="col" id="div1">
+    <h1  style="color:{{Titulo[0].color}}">{{Titulo[0].nombre}}(Destino)</h1>
+    <div >
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Cuartos de Maquinas</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
 
-  <div class="col div1" id="div1">
-    <h1  style="color:{{Titulo2[0].color}}">{{Titulo2[0].nombre}}</h1>
-    <table mat-table cdkColumnDef="customWidthClass" [dataSource]="dataSource2" matSort class="mat-elevation-z8">
+          <button ngbDropdownItem (click)="changeAction(dat['nombre'],dat['nom2'])"
+            *ngFor="let dat of cms3">{{dat['nombre']}}</button>
+
+        </div>
+      </div>
+    </div>
+
+    <table mat-table cdkColumnDef="customWidthClass" [dataSource]="dataSource" matSort class="mat-elevation-z8">
       <ng-container *ngFor="let dat of displayedColumns" matColumnDef={{dat}}>
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{dat}} </th>
         <td style="width:150px" [ngClass]="'customWidthClass'" mat-cell *matCellDef="let element">

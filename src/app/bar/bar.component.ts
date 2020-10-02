@@ -117,6 +117,11 @@ export class BarComponent implements OnInit {
   }
   viewtraspasos()
   {
-    this.rotuer.navigate(['traspasoview']);  }
+    this.ar.paramMap.subscribe((params: ParamMap) => {
+      //console.log( params.get('cm'))
+      let n = params.get('cm')
+      this.rotuer.navigate(['traspasoview/'+n]);  })
+    }
+    
 
 }

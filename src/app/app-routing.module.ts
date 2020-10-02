@@ -24,7 +24,7 @@ const routes: Routes = [
             {path:'pedidoview/:cm',component:ViewPedidosComponent,canActivate:[HomeGuard]},
             {path:'ventas',component:ViewPedidosAdminComponent,canActivate:[HomeGuard]},
             {path:'traspaso',component:TraspasosComponent,canActivate:[HomeGuard]},
-            {path:'traspasoview',component:ViewTraspasosComponent,canActivate:[HomeGuard]},
+            {path:'traspasoview/:cm',component:ViewTraspasosComponent,canActivate:[HomeGuard]},
 
             //{path:'**',component:HomeComponent ,canActivate:[HomeGuard],},
 ];

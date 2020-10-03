@@ -6,9 +6,11 @@
       <div class="card carddi " id="div">
         <div class="card-body" style="padding-top: 5%;">
           <h1 style="color: midnightblue;">Traspasos en proceso</h1>
-          <div class="card carddi3" >
+          <div class="card carddi3" *ngFor="let i of trapasoP" >
             <div class="card-body" style="text-align: center;">
-
+              <p>{{i.fecha }}</p>
+              <p>{{i.producto }}</p>
+              <p>Cantidad = {{i.valor}}</p>
               <p class="card-text">ver mas...</p>
               <div>
                 <button ngbTooltip="Actualizar estatus" class="btn btn-info"

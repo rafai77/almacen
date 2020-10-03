@@ -37,7 +37,8 @@ export class ViewTraspasosComponent implements OnInit {
   {
     this.datos.gettraspaso(this.cm).subscribe((res:any)=>
     {
-      this.trapasoP=res.filter( i =>(i.status=="proceso"));
+      console.log(res);
+      this.trapasoP=res["datos"].filter( i =>(i.status=="proceso"));
       console.log(this.trapasoP)
     })
   }

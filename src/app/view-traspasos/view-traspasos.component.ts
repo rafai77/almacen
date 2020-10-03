@@ -16,6 +16,7 @@ export class ViewTraspasosComponent implements OnInit {
     private ar: ActivatedRoute, private modalService: NgbModal,
     config: NgbModalConfig,) { }
     cm=""
+    trapasoP=[]
 
   ngOnInit(): void {
     this.ar.paramMap.subscribe((params: ParamMap) => {
@@ -36,8 +37,10 @@ export class ViewTraspasosComponent implements OnInit {
   {
     this.datos.gettraspaso(this.cm).subscribe((res:any)=>
     {
-      console.log(res)
+      this.trapasoP=res.filter( i =>(i.status=="proceso"));
+      console.log(this.trapasoP)
     })
   }
 
 }
+    

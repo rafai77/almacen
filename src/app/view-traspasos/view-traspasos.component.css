@@ -1,0 +1,150 @@
+@media only screen and (max-width: 4000px) {
+    #div {
+      margin-top: 5%;
+      margin-left: 5%;
+        overflow:scroll;
+        width:95%;
+        height:   450px;
+        line-height: 1;
+  
+    }
+  }
+  @media only screen and (max-width: 4000px) {
+    #divmodal {
+      margin-top: 5%;
+      margin-left: 5%;
+        overflow:scroll;
+        width:300px;
+        height: 500px;
+  
+  
+    }
+  }
+  
+  .carddi
+  {
+    border-radius: 25px;
+    border-color: #4b0082;
+  }
+  
+  
+  
+  .carddi2
+  {
+    border-radius: 25px;
+    border-color: blue;
+    margin-top: 2.5%;
+  
+  }
+  
+  .carddi3
+  {
+    border-radius: 25px;
+    border-color: #C7A32C;
+    margin-top: 2.5%;
+  
+  }
+  
+  
+  .carddi4
+  {
+    border-radius: 25px;
+    border-color: green;
+    margin-top: 2.5%;
+  
+  }
+  
+  @media (min-width:34em) {
+    .card-deck > .card
+    {
+        width: 29%;
+        flex-wrap: wrap;
+        flex: initial;
+    }
+  }
+  
+  
+  ngb-popover-window {
+    position: absolute;
+    width: auto !important;
+    display: block !important;
+    background-color: black !important;
+    border: 1px solid red !important;
+    max-width: none !important;
+  }
+  
+  
+  .popover
+  {
+    color: red;
+    font-size: 10px;
+  }
+  
+  .popover-title { color: green; }
+  
+  .ngbPopover
+  {
+    color: red;
+    font-size: 10px;
+  }
+  .popover-title {
+    color: blue;
+    font-size: 15px;
+  }
+  .popover-content {
+    color: red;
+    font-size: 10px;
+  }
+  
+  
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+  
+  ::-webkit-scrollbar:vertical {
+    width:10px;
+  }
+  
+  ::-webkit-scrollbar-button:increment,::-webkit-scrollbar-button {
+    display: none;
+  }
+  
+  ::-webkit-scrollbar:horizontal {
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+  }
+  
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+  
+  
+  .form-group.hidden {
+    width: 0;
+    margin: 0;
+    border: none;
+    padding: 0;
+  }
+  .custom-day {
+    text-align: center;
+    padding: 0.185rem 0.25rem;
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+  }
+  .custom-day.focused {
+    background-color: #e6e6e6;
+  }
+  .custom-day.range, .custom-day:hover {
+    background-color: rgb(2, 117, 216);
+    color: white;
+  }
+  .custom-day.faded {
+    background-color: rgba(2, 117, 216, 0.5);
+  }
+  

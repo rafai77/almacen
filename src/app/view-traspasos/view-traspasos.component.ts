@@ -37,8 +37,15 @@ export class ViewTraspasosComponent implements OnInit {
   {
     this.datos.gettraspaso(this.cm).subscribe((res:any)=>
     {
-      console.log(res);
-      this.trapasoP=res["datos"].filter( i =>(i.status=="proceso"));
+      
+      let data_temporal=[]
+      data_temporal=res["datos"].filter( i =>(i.status=="proceso"));
+      var hash = {};
+      
+      let x=data_temporal.filter( o => hash[o.id_traspasos] ? false : hash[o.id_traspasos] = true);
+      console.log(x);
+      for (let j in x)
+       this.trapasoP.push(data_temporal.filter(i=> (i.id_traspasos==x[j].id_traspasos)));
       console.log(this.trapasoP)
     })
   }

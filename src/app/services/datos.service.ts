@@ -216,4 +216,13 @@ export class DatosService {
     return this.http.post(`${this.Dominio}/traspasosviewAdmin`,body,{headers:headers});
 
   }
+  Deletetraspasos(data)
+  {
+    var headers={
+      'vefificador':this.servicelog.tkget()
+    }
+   
+    return this.http.delete(`${this.Dominio}/Borrartraspasos/`+data,{headers:headers},);
+
+  }
 }

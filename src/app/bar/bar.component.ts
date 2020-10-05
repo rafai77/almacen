@@ -103,7 +103,10 @@ export class BarComponent implements OnInit {
     this.ar.paramMap.subscribe((params: ParamMap) => {
       //console.log( params.get('cm'))
       let n = params.get('cm')
+      if(n!='inventario' && n!=null)       
        this.rotuer.navigate(['/pedido/'+n]);
+      else
+      (this.servicelog.setrol()=='user')?this.rotuer.navigate(['/pedido/'+this.cms[0].nom2]): this.rotuer.navigate(['/pedido/'+'inventario']);
     })
   }
 
@@ -115,7 +118,7 @@ export class BarComponent implements OnInit {
       if(n!='inventario' && n!=null)       
        this.rotuer.navigate(['/pedidoview/'+n]);
       else
-        this.rotuer.navigate(['/pedidoviewA/'+'inventario']);
+      (this.servicelog.setrol()=='user')?this.rotuer.navigate(['/pedidoviewA/'+this.cms[0].nom2]): this.rotuer.navigate(['/pedidoviewA/'+'inventario']);
     })
   }
 
@@ -129,10 +132,13 @@ export class BarComponent implements OnInit {
     this.ar.paramMap.subscribe((params: ParamMap) => {
       
       let n = params.get('cm')
-      if(n!='inventario' && n!=null )
+      console.log(this.servicelog.setrol())
+      if(n!='inventario' && n!=null && this.servicelog.setrol()=='user')
+      {
         this.rotuer.navigate(['traspasoview/'+n]); 
+      }
       else
-        this.rotuer.navigateByUrl('traspasoviewA/'); 
+          (this.servicelog.setrol()=='user')? this.rotuer.navigate(['traspasoview/'+this.cms[0].nom2]) :this.rotuer.navigateByUrl('traspasoviewA/'); 
        })
      
     }

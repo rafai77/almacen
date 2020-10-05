@@ -18,6 +18,7 @@ export class LogService {
   private info:Jwt;//informacion de la resupesta
   private log:boolean=false;
   private iduser:string;
+  private rol;
 
 
   constructor(private http: HttpClient,private router:Router)
@@ -26,6 +27,7 @@ export class LogService {
     this.token=localStorage.getItem('tk');
     this.user=localStorage.getItem('nombre');
     this.iduser=localStorage.getItem('iduser');
+    this.rol=localStorage.getItem('rol');
     if(this.token)
     {
       this.log=true;
@@ -118,6 +120,7 @@ export class LogService {
           this.tkset(res.token);
           this.guardarN(res.user.nombre);
           this.guardariduser(res.user.id_user);
+          this.saverol(res.user.rol)
         }
       }
     ))
@@ -132,8 +135,17 @@ export class LogService {
     this.user=nombre;
 
   }
+  private saverol(rol)
+  {
+    localStorage.setItem('rol',rol);
+    this.user=rol;
 
+  }
 
+  setrol()
+  {
+    return this.rol;
+  }
   tkget()//regresa el token
   {
     return (!this.token)?this.token=localStorage.getItem('tk'):this.token;

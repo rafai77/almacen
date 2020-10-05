@@ -85,5 +85,14 @@ export class ViewTraspasosAdminComponent implements OnInit {
     this.obtener()
   }
 
+  borrar(data)
+  {
+    this.datos.Deletetraspasos(data).subscribe((res:any)=>
+    {
+      console.log(res)
+      this.obtener();
+    })
+  }
+
 }
     

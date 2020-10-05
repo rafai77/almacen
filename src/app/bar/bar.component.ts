@@ -112,10 +112,10 @@ export class BarComponent implements OnInit {
     this.ar.paramMap.subscribe((params: ParamMap) => {
       //console.log( params.get('cm'))
       let n = params.get('cm')
-      if(n!='inventario')       
+      if(n!='inventario' && n!=null)       
        this.rotuer.navigate(['/pedidoview/'+n]);
       else
-        this.rotuer.navigate(['/pedidoviewA/'+n]);
+        this.rotuer.navigate(['/pedidoviewA/'+'inventario']);
     })
   }
 
@@ -129,7 +129,7 @@ export class BarComponent implements OnInit {
     this.ar.paramMap.subscribe((params: ParamMap) => {
       
       let n = params.get('cm')
-      if(n!='inventario')
+      if(n!='inventario' && n!=null )
         this.rotuer.navigate(['traspasoview/'+n]); 
       else
         this.rotuer.navigateByUrl('traspasoviewA/'); 

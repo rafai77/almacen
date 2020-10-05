@@ -210,7 +210,10 @@ export class DatosService {
     var headers={
       'vefificador':this.servicelog.tkget()
     }
-    return this.http.post(`${this.Dominio}/traspasosviewAdmin`,{headers:headers});
+    let body={
+
+    }
+    return this.http.post(`${this.Dominio}/traspasosviewAdmin`,body,{headers:headers});
 
   }
 }

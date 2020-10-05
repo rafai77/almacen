@@ -22,10 +22,11 @@ const routes: Routes = [
             {path:'Home/:cm',component:HomeComponent,canActivate:[HomeGuard]},//componente para el home normal
             {path:'pedido/:cm',component:AddpedidoComponent,canActivate:[HomeGuard]},
             {path:'pedidoview/:cm',component:ViewPedidosComponent,canActivate:[HomeGuard]},
+            {path:'pedidoviewA/:cm',component:ViewPedidosAdminComponent,canActivate:[HomeGuard]},
             {path:'ventas',component:ViewPedidosAdminComponent,canActivate:[HomeGuard]},
             {path:'traspaso',component:TraspasosComponent,canActivate:[HomeGuard]},
             {path:'traspasoview/:cm',component:ViewTraspasosComponent,canActivate:[HomeGuard]},
-
+            {path:'traspasoviewA/',component:ViewPedidosAdminComponent,canActivate:[HomeGuard]},
             //{path:'**',component:HomeComponent ,canActivate:[HomeGuard],},
 ];
 @NgModule({

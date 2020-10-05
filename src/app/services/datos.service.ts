@@ -205,4 +205,12 @@ export class DatosService {
     
   }
 
+  traspasosviewAdmin()
+  {
+    var headers={
+      'vefificador':this.servicelog.tkget()
+    }
+    return this.http.post(`${this.Dominio}/traspasosviewAdmin`,{headers:headers});
+
+  }
 }

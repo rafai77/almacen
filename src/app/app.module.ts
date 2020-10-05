@@ -27,6 +27,7 @@ import { ViewPedidosAdminComponent } from './view-pedidos-admin/view-pedidos-adm
 import { TraspasosComponent } from './traspasos/traspasos.component';
 import { ViewTraspasosComponent } from './view-traspasos/view-traspasos.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { ViewTraspasosAdminComponent } from './view-traspasos-admin/view-traspasos-admin.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     ViewPedidosAdminComponent,
     TraspasosComponent,
     ViewTraspasosComponent,
+    ViewTraspasosAdminComponent,
    
   ],
   imports: [

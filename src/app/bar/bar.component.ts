@@ -20,6 +20,7 @@ export class BarComponent implements OnInit {
   dropacutal;
   planta;
   isNavbarCollapsed=true;
+  cm="";
 
 
   constructor( private ar: ActivatedRoute,private datos:DatosService,private servicelog:LogService,private rotuer:Router)
@@ -41,6 +42,10 @@ export class BarComponent implements OnInit {
       {
         let nombres
         let tablas
+        this.ar.paramMap.subscribe((params: ParamMap) => {
+          //console.log( params.get('cm'))
+          this.cm= params.get('cm') })
+         // this.rotuer.navigate(['traspasoview/'+n]);  })
         //console.log(res)
         nombres=res.map(item=> item.nombre)
         tablas=res.map(item=> item.nom2)
@@ -107,7 +112,10 @@ export class BarComponent implements OnInit {
     this.ar.paramMap.subscribe((params: ParamMap) => {
       //console.log( params.get('cm'))
       let n = params.get('cm')
+      if(n!='inventario')
        this.rotuer.navigate(['/pedidoview/'+n]);
+      else
+        this.rotuer.navigate(['/pedidoviewA/'+n]);
     })
   }
 

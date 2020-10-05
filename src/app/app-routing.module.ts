@@ -13,6 +13,7 @@ import { ViewPedidosAdminComponent } from './view-pedidos-admin/view-pedidos-adm
 
 import { TraspasosComponent } from './traspasos/traspasos.component';
 import { ViewTraspasosComponent } from './view-traspasos/view-traspasos.component';
+import { ViewTraspasosAdminComponent } from './view-traspasos-admin/view-traspasos-admin.component';
 
 
 const routes: Routes = [
@@ -26,8 +27,7 @@ const routes: Routes = [
             {path:'ventas',component:ViewPedidosAdminComponent,canActivate:[HomeGuard]},
             {path:'traspaso',component:TraspasosComponent,canActivate:[HomeGuard]},
             {path:'traspasoview/:cm',component:ViewTraspasosComponent,canActivate:[HomeGuard]},
-            {path:'traspasoviewA/',component:ViewPedidosAdminComponent,canActivate:[HomeGuard]},
-            //{path:'**',component:HomeComponent ,canActivate:[HomeGuard],},
+            {path:'traspasoviewA/',component:ViewTraspasosAdminComponent,canActivate:[HomeGuard]},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

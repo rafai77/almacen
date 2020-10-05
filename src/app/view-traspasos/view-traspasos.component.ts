@@ -65,12 +65,25 @@ export class ViewTraspasosComponent implements OnInit {
   }
   cambiarStatus(id)
   {
+    this.obtener()
     console.error(id)
     this.datos.changetraspaso(id).subscribe((res:any)=>
     {
       console.log(res)
+      this.obtener()
     })
     
+  }
+
+
+  open(content,data)
+  {
+    
+    let aux=JSON.stringify(data[0])
+   
+    this.myAngularxQrCode = aux;
+    this.modalService.open(content);
+    this.obtener()
   }
 
 }

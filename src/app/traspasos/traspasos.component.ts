@@ -204,7 +204,7 @@ export class TraspasosComponent implements OnInit {
     this.datos.settraspaso(this.Titulo2[0].nombre,this.Titulo[0].nombre,newv).subscribe((res:any)=>
     {
       console.log(res)
-      this.router.navigate(['/traspasoview/']);
+      this.router.navigate(['/Home/inventario']);
     });
   }
 

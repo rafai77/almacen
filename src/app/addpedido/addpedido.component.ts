@@ -121,6 +121,7 @@ export class AddpedidoComponent implements OnInit {
     this.datos.sendpedido(body).subscribe((res:any)=>
     {
       console.log(res)
+      this.router.navigate(['/Home/inventario']);
     })
 
     //const modalRef = this.modalService.open(NgbdModalContent);

@@ -193,4 +193,16 @@ export class DatosService {
     return this.http.post(`${this.Dominio}/traspasosview`,body,{headers:headers});
   }
 
+  changetraspaso(id)
+  { 
+    var headers={
+      'vefificador':this.servicelog.tkget()
+    }
+    var body={
+      id:id,
+    }
+    return this.http.post(`${this.Dominio}/statustraspasos`,body,{headers:headers});
+    
+  }
+
 }

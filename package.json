@@ -25,6 +25,7 @@
     "@angular/service-worker": "~10.0.9",
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
     "@popperjs/core": "^2.4.4",
+    "angularx-qrcode": "^10.0.10",
     "bootstrap": "^4.5.2",
     "chart.js": "^2.9.3",
     "jqeury": "0.0.1-security",

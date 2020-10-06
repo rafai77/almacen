@@ -165,6 +165,14 @@ export class ViewPedidosAdminComponent implements OnInit {
       }
 
     }
+    borrar(id)
+    {
+      this.datos.Deletepedidos(id).subscribe((res:any)=>
+      {
+        console.log(res);
+        this.obtener();
+      })
+    }
 
 
 }

@@ -35,6 +35,7 @@ export class ViewPedidosComponent implements OnInit {
   ordenenaprob=[]
   ordenproceso=[]
   totales=[]
+  rol=""
 
 
 
@@ -44,6 +45,7 @@ export class ViewPedidosComponent implements OnInit {
     this.ar.paramMap.subscribe((params: ParamMap) => {
     this.cm = params.get('cm');
     this.obtener();
+    this.rol=this.logiS.setrol();
     setTimeout(() => this.staticAlertClosed = true, 20000);
 
     this._success.subscribe(message => this.successMessage = message);
@@ -169,6 +171,16 @@ export class ViewPedidosComponent implements OnInit {
     }
 
   }
+
+  borrar(id)
+  {
+    this.datos.Deletepedidos(id).subscribe((res:any)=>
+    {
+      console.log(res);
+      this.obtener();
+    })
+  }
+
 
 
 

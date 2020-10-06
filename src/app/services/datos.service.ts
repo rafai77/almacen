@@ -225,4 +225,14 @@ export class DatosService {
     return this.http.delete(`${this.Dominio}/Borrartraspasos/`+data,{headers:headers},);
 
   }
+
+  Deletepedidos(data)
+  {
+    var headers={
+      'vefificador':this.servicelog.tkget()
+    }
+   
+    return this.http.delete(`${this.Dominio}/BorrarPedidos/`+data,{headers:headers},);
+
+  }
 }

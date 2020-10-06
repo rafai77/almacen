@@ -18,12 +18,15 @@ export class ViewTraspasosComponent implements OnInit {
     cm=""
     trapasoP=[]
     trapasoE=[]//procesos para entregar 
+    traspasoinfo=[]
     public myAngularxQrCode: string = null;
+    rol=""
 
   ngOnInit(): void {
     this.ar.paramMap.subscribe((params: ParamMap) => {
       this.cm = params.get('cm');
       this.obtener();
+      this.rol=this.logiS.setrol()
       // setTimeout(() => this.staticAlertClosed = true, 20000);
   
       // this._success.subscribe(message => this.successMessage = message);
@@ -41,7 +44,7 @@ export class ViewTraspasosComponent implements OnInit {
     data_temporal=res;
     var hash = {};
     let x=data_temporal.filter( o => hash[o.id_traspasos] ? false : hash[o.id_traspasos] = true);
-    console.log(x);
+   
     for (let j in x)
       aux.push(data_temporal.filter(i=> (i.id_traspasos==x[j].id_traspasos)));
     return aux;
@@ -78,9 +81,9 @@ export class ViewTraspasosComponent implements OnInit {
 
   open(content,data)
   {
-    
+    this.traspasoinfo=data
     let aux=JSON.stringify(data[0])
-   
+    
     this.myAngularxQrCode = aux;
     this.modalService.open(content);
     this.obtener()

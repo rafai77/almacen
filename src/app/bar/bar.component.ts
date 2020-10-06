@@ -118,7 +118,7 @@ export class BarComponent implements OnInit {
       if(n!='inventario' && n!=null)       
        this.rotuer.navigate(['/pedidoview/'+n]);
       else
-      (this.servicelog.setrol()=='user')?this.rotuer.navigate(['/pedidoviewA/'+this.cms[0].nom2]): this.rotuer.navigate(['/pedidoviewA/'+'inventario']);
+      (this.servicelog.setrol()=='user')?this.rotuer.navigate(['/pedidoview/'+this.cms[0].nom2]): this.rotuer.navigate(['/pedidoviewA/'+'inventario']);
     })
   }
 

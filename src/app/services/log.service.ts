@@ -58,6 +58,7 @@ export class LogService {
      localStorage.removeItem('tk');
      localStorage.removeItem('nombre');
      localStorage.removeItem('iduser');
+     localStorage.removeItem('rol');
 
    }
     }
@@ -94,6 +95,10 @@ export class LogService {
     this.token= ' '
     this.log=false;
     localStorage.removeItem('tk');
+    localStorage.removeItem('tk');
+     localStorage.removeItem('nombre');
+     localStorage.removeItem('iduser');
+     localStorage.removeItem('rol');
   }
   private guardariduser(n)
   {
@@ -138,7 +143,7 @@ export class LogService {
   private saverol(rol)
   {
     localStorage.setItem('rol',rol);
-    this.user=rol;
+    this.rol=rol;
 
   }
 

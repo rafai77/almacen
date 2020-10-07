@@ -77,7 +77,13 @@ export class ViewTraspasosComponent implements OnInit {
     })
     
   }
-
+  close()
+  {
+    console.log("kjkdfhjk")
+    this.obtener()
+    this.modalService.dismissAll()
+    this.obtener()
+  }
 
   open(content,data)
   {

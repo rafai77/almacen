@@ -73,7 +73,13 @@ export class ViewTraspasosAdminComponent implements OnInit {
     })
     
   }
-
+  close()
+  {
+    console.log("kjkdfhjk")
+    this.obtener()
+    this.modalService.dismissAll()
+    this.obtener()
+  }
 
   open(content,data)
   {
@@ -82,7 +88,8 @@ export class ViewTraspasosAdminComponent implements OnInit {
    
     this.myAngularxQrCode = aux;
     this.modalService.open(content);
-    this.obtener()
+    //this.obtener()
+    
   }
 
   borrar(data)

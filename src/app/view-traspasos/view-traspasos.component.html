@@ -3,11 +3,12 @@
 
 
 
-<ng-template #content let-c="close" let-d="dismiss">
 
+<ng-template #content let-c="close" let-d="dismiss">
+  
   <div class="modal-header">
     <h1 style="color: midnightblue;" class="modal-title" id="modal-basic-title">Escanear Para Confirmar</h1>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+    <button type="button" class="close" aria-label="Close" (click)="close()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>

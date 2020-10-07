@@ -6,7 +6,7 @@
   
     <div class="modal-header">
       <h1 style="color: midnightblue;" class="modal-title" id="modal-basic-title">Escanear Para Confirmar</h1>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <button type="button" class="close" aria-label="Close" (click)="close()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -28,6 +28,8 @@
             <div class="card carddi3" *ngFor="let i of trapasoP">
               <div class="card-body" style="text-align: center;">
                 <p>{{i[0].fecha }}</p>
+                <p style="color: red;">Origen : {{i[0].origen }} </p>
+                <p style="color: blue;">Destino : {{i[0].destino }}
                 <p class="card-text">{{i[0].producto+"="+i[0].valor}}</p>
                 <p class="card-text">{{i[1].producto+"="+i[1].valor}}</p>
                
@@ -58,6 +60,8 @@
             <div class="card carddi2" *ngFor="let i of trapasoE">
               <div class="card-body" style="text-align: center;">
                 <p>{{i[0].fecha }}</p>
+                <p style="color: red;">Origen : {{i[0].origen }} </p>
+                <p style="color: blue;">Destino : {{i[0].destino }}
                 <p class="card-text">{{i[0].producto+"="+i[0].valor}}</p>
                 <p class="card-text">{{i[1].producto+"="+i[1].valor}}</p>
                 <button ngbTooltip="Confirmar Traspasos" (click)="open(content,i)" class="btn btn-link"
@@ -80,6 +84,11 @@
                     </g>
                     </svg>                            
                   </button>
+                  <button ngbTooltip="Borrar" class="btn btn-danger" value="Send" (click)="borrar(i[0].id_traspasos)"> <svg width="1em" height="1em"
+                    viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                      d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z" />
+                  </svg></button>
                 <div>
                 </div>
               </div>

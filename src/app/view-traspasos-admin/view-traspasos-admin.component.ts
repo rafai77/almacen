@@ -17,6 +17,7 @@ export class ViewTraspasosAdminComponent implements OnInit {
     cm=""
     trapasoP=[]
     trapasoE=[]//procesos para entregar 
+    trapasov=[]//procesos para Valido 
     public myAngularxQrCode: string = null;
 
   ngOnInit(): void {
@@ -53,6 +54,8 @@ export class ViewTraspasosAdminComponent implements OnInit {
       console.log(res)
       this.trapasoP=this.separar(res["datos"].filter( i =>(i.status=="proceso")))
       this.trapasoE=this.separar(res["datos"].filter( i =>(i.status=="Entregando")))
+      this.trapasov=this.separar(res["datos"].filter( i =>(i.status=="Validado")))
+
     })
   }
 

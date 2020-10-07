@@ -21,6 +21,8 @@ export class ViewTraspasosComponent implements OnInit {
     traspasoinfo=[]
     public myAngularxQrCode: string = null;
     rol=""
+    trapasov=[]//procesos para Valido 
+
 
   ngOnInit(): void {
     this.ar.paramMap.subscribe((params: ParamMap) => {
@@ -57,6 +59,7 @@ export class ViewTraspasosComponent implements OnInit {
       console.log(res)
       this.trapasoP=this.separar(res["datos"].filter( i =>(i.status=="proceso")))
       this.trapasoE=this.separar(res["datos"].filter( i =>(i.status=="Entregando")))
+      this.trapasov=this.separar(res["datos"].filter( i =>(i.status=="Validado")))
     })
   }
 

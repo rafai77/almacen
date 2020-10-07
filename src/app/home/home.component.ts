@@ -516,6 +516,28 @@ export class HomeComponent implements OnInit {
     //console.log(dat,"datosssss")
   }
 
+  editar(datos)
+  {
+    let datoE=[]
+    console.log(datos._directives)
+    for(let i in datos._directives)
+      if(datos._directives[i]["value"])
+       datoE.push({id:datos._directives[i]["name"],valor:datos._directives[i]["value"]})
+    this.obtener();
+    console.log(datoE)
+
+    this.datos.editartablas(datoE,this.cm).subscribe((res:any)=> console.log(res))
+    this.modalService.dismissAll()
+  }
+
+  open(content)
+  {
+    
+   
+    this.modalService.open(content);
+    //this.obtener()
+    
+  }
 
 
 }

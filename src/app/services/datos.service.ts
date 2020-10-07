@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ɵɵresolveBody } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/';
 import { User } from "../model/User";
@@ -233,6 +233,22 @@ export class DatosService {
     }
    
     return this.http.delete(`${this.Dominio}/BorrarPedidos/`+data,{headers:headers},);
+
+  }
+
+  editartablas(data,tab)
+  {
+    var headers={
+      'vefificador':this.servicelog.tkget()
+    }
+
+    let body={
+      datos:data,
+      cm:tab
+    }
+    
+    return this.http.post(`${this.Dominio}/traspasosviewAdmin`,body,{headers:headers});
+
 
   }
 }

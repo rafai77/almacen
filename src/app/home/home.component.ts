@@ -523,10 +523,11 @@ export class HomeComponent implements OnInit {
     for(let i in datos._directives)
       if(datos._directives[i]["value"])
        datoE.push({id:datos._directives[i]["name"],valor:datos._directives[i]["value"]})
-    this.obtener();
     console.log(datoE)
 
     this.datos.editartablas(datoE,this.cm).subscribe((res:any)=> console.log(res))
+    this.obtener();
+
     this.modalService.dismissAll()
   }
 

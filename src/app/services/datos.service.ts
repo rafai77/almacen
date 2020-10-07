@@ -247,7 +247,7 @@ export class DatosService {
       cm:tab
     }
     
-    return this.http.post(`${this.Dominio}/traspasosviewAdmin`,body,{headers:headers});
+    return this.http.post(`${this.Dominio}/editarTabla`,body,{headers:headers});
 
 
   }

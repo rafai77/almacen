@@ -84,6 +84,7 @@ export class HomeComponent implements OnInit {
   alert= [{type: 'danger',
   message: 'This is a danger alert',}]
   staticAlertClosed: boolean;
+  formulaN=[]
 
 
   constructor( private swpush:SwPush,private calendar: NgbCalendar, public formatter: NgbDateParserFormatter,
@@ -531,6 +532,25 @@ export class HomeComponent implements OnInit {
     this.modalService.dismissAll()
   }
 
+
+  modifcar(content2)
+  {
+    this.modalService.open(content2);
+    console.log(this.productosf)
+
+    console.log(this.productos)
+    for(let i in this.Data)
+        this.formulaN.push({producto:this.Data[i].producto,valor:0})
+    console.log(this.formulaN)
+    for (let i in this.formulaN)
+      for (let j in this.productosf)
+        if(this.formulaN[i].producto==this.productosf[j])
+          this.formulaN[i].valor=this.cantidadesf[j]
+
+          
+
+
+  }
   open(content)
   {
     

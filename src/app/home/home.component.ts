@@ -532,20 +532,40 @@ export class HomeComponent implements OnInit {
     this.modalService.dismissAll()
   }
 
+  formulamodi(datos)
+  {
+   
+    for(let i in this.Data)
+      this.formulaN[i].valor=datos._directives[i]["value"]
+    let final=[]
+    for (let i in this.formulaN)
+      if(this.formulaN[i].valor)
+        final.push(this.formulaN[i])
 
+    console.log(this.formulaN)
+    this.datos.formulaadd(final,this.cm).subscribe((res:any)=>{
+      console.log(res);
+      this.formulaN=[]
+      this.modalService.dismissAll()
+
+    })
+  }
   modifcar(content2)
   {
+    this.formulaN=[]
     this.modalService.open(content2);
     console.log(this.productosf)
 
     console.log(this.productos)
     for(let i in this.Data)
-        this.formulaN.push({producto:this.Data[i].producto,valor:0})
+        this.formulaN.push({id:this.Data[i].id_producto,producto:this.Data[i].producto,valor:0})
     console.log(this.formulaN)
     for (let i in this.formulaN)
       for (let j in this.productosf)
         if(this.formulaN[i].producto==this.productosf[j])
           this.formulaN[i].valor=this.cantidadesf[j]
+    console.log(this.formulaN)
+    
 
           
 

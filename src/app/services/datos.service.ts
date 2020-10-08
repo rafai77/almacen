@@ -251,4 +251,19 @@ export class DatosService {
 
 
   }
+
+  formulaadd(datos,tabla)
+  {
+    console.log(datos)
+    var headers={
+      'vefificador':this.servicelog.tkget()
+    }
+
+    let body={
+      datos:datos,
+      cm:tabla
+    }
+    
+    return this.http.post(`${this.Dominio}/formulaadd`,body,{headers:headers});
+  }
 }

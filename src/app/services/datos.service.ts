@@ -87,15 +87,16 @@ export class DatosService {
 
   chartconsumo(cm,f1,f2): Observable<any>
   {
-    if(cm=="cm1")
-    cm="consumocm1"
+    let cm2;
+    cm2="consumocm1"
     var headers={
       'vefificador':this.servicelog.tkget()
     }
     var body={
-      "cm":cm,
+      "cm":cm2,
       "f1":f1,
       "f2":f2,
+       "cm2":cm
     }
     return this.http.post(`${this.Dominio}/Consumo/`,body,{headers:headers});
   }

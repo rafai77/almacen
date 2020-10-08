@@ -128,47 +128,13 @@ export class ViewPedidosComponent implements OnInit {
   productollego(form,list)
   {
 
-    let status= "EntregaP"
-    let datosenviar=[]
-    let data_p_c=[]
-    let data_erro=[]
-
-    for (let i in form._directives)
-    if(form._directives[i]["value"])
-      datosenviar.push([form._directives[i]["name"],parseFloat(form._directives[i]["value"])])
-    else
-      datosenviar.push([form._directives[i]["name"],0])
+    
 
 
-    //console.log(this.pedidotem)
-    for (let i in  this.pedidotem)
-    {
-      console.log((datosenviar[i][1]+this.pedidotem[i]["cantidad_entrgada"]))
-       if(this.pedidotem[i]["producto"] == datosenviar[i][0])
-        if((datosenviar[i][1]+this.pedidotem[i]["cantidad_entrgada"])<= this.pedidotem[i]["cantidad"])
-          data_p_c.push([this.pedidotem[i]["id_producto"],(datosenviar[i][1]),this.pedidotem[i]["id_pedido"]])
-        else
-         data_erro.push([datosenviar[i][0]])
-    }
-
-
-    if(data_erro.length)
-    {
-      let x="";
-      for (var i in data_erro)
-        x+=data_erro[i]+", "
-      this.changeSuccessMessage(x)
-    }
-    else
-    {
-      this.datos.actualizarP(data_p_c,status).subscribe((res:any)=>
-      {
-        console.log(res)
-
-      });
+    
       this.modalService.dismissAll()
       this.obtener()
-    }
+  
 
   }
 

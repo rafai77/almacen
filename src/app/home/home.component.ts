@@ -317,6 +317,7 @@ export class HomeComponent implements OnInit {
     {
       this.datos.mandarformula(this.cantidadesf, this.productosf, this.cm,this.Data).subscribe((res: any) => {
         console.log(res);
+        
         if(res["error"])
           this.mensajeError=res["status"]
         else
@@ -547,7 +548,7 @@ export class HomeComponent implements OnInit {
       console.log(res);
       this.formulaN=[]
       this.modalService.dismissAll()
-
+      
     })
   }
   modifcar(content2)
@@ -580,5 +581,19 @@ export class HomeComponent implements OnInit {
     
   }
 
+  act()
+  {
+    this.ar.paramMap.subscribe((params: ParamMap) => {
+    this.logiS.cad()
+    this.cm = params.get('cm');
+   // this.chartconsumo();
+    this.formulaView();
+    this.datosinver();
+    this.titulo()
+    this.labels();
+    this.tipos("ls")
+    this.obtener();
+    })
+  }
 
 }

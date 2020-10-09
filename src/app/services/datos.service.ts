@@ -14,7 +14,7 @@ import { LogService } from './log.service';
   providedIn: 'root'
 })
 export class DatosService {
-  private Dominio = 'http://localhost:3000';
+  private Dominio = 'http://192.168.1.25:2000';
 
   constructor(private http: HttpClient,private router:Router,private servicelog:LogService) { }
 

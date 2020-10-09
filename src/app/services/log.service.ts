@@ -12,7 +12,7 @@ import { of } from 'rxjs'
   providedIn: 'root'
 })
 export class LogService {
-  private Dominio = 'http://localhost:3000';
+  private Dominio = 'http://192.168.1.25:2000';
   private token:string ;// tk
   private user:string;//
   private info:Jwt;//informacion de la resupesta
